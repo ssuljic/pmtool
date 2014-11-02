@@ -1,0 +1,6 @@
+<ul class="list-group" id="sidebar">
+<li class="list-group-item"><%= link_to 'Home', projects_path %></li>
+<% @projects.each do |project| %>
+	<li class="list-group-item"><%= link_to project.name, project_path(project) %></li>
+<% end %>
+</ul>

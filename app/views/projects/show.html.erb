@@ -1,0 +1,42 @@
+<%= render 'shared/header' %>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-3">
+			<%= render 'shared/sidebar' %>
+		</div>
+		<div class="col-md-9">
+			<div class="jumbotron">
+			  <h1><%= @project.name %></h1>
+			  <p><%= @project.short_description %></p>
+			</div>
+			<h3>Project activities</h3>
+			<div id="accordion">
+				<% @project.activities.each do |activity| %>
+				  <h3><%= activity.name %></h3>
+				  <div>
+				  <% if activity.tasks.empty? %>
+				  No tasks created currently.
+				  <% else %>
+				  	<ul>
+				  		<% activity.tasks.each do |task| %>
+				  			<li><%= task.name %> 
+				  			<span class="gray"><%= task.user.name + " " + task.user.surname %></span>
+				  			</li>
+				  		<% end %>
+				  	</ul>
+				  <% end %>
+				  </div>
+			  <% end %>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	$(function() {
+	  $( "#accordion" ).accordion({
+	  	collapsible: true,
+	  	active: false
+	  });
+	});
+</script>
