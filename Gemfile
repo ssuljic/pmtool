@@ -35,6 +35,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
 gem 'thin'
+gem 'rails_serve_static_assets'
 
 group :development do
 	gem 'debugger'
