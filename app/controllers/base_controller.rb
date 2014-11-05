@@ -11,24 +11,25 @@ class BaseController < ApplicationController
 	end
 
 	def sign_up
- 		@user = User.new(params[:user])
-		if @user.valid?
-	    	@user.save
-	  	else
-	    	render :action => "sign_up_form"
-	  	end
+ 		@user = User.new(user_params)
+	    if @user.save
+	      redirect_to root_path
+	    else
+	      raise
+	      redirect_to sign_up_path
+	    end
 	end
 
 	def login
 		user = User.where(:username => params[:username]).first
 		if (user)
-			if (user.password == Digest::SHA256.hexdigest(params[:password]))
+			if (user.password_digest == Digest::SHA256.hexdigest(params[:password]))
 				session[:id] = user.id
 				redirect_to projects_path
 				return
 			end
 		end
-
+		raise
 		flash[:alert] = "Username or password are incorrect!"
 		redirect_to root_path
 	end
@@ -41,4 +42,9 @@ class BaseController < ApplicationController
 			@current_user = User.find(session[:id])
 		end
 	end
+
+    def user_params
+      params.require(:user).permit(:name, :surname, :email, :username, :password,
+                                   :password_confirmation)
+    end
 end

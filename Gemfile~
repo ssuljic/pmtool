@@ -48,6 +48,3 @@ group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
-
-# Use bcrypt for password protection and 
-gem 'bcrypt',               '3.1.7'

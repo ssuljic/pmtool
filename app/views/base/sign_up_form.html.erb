@@ -2,28 +2,28 @@
 <div class="col-md-6">
 <%= form_tag (sign_up_path()), class: 'sign_up_form' do %>
 <div class="form-group">
-    <label for="firstname">First name</label>
-    <input type="text" class="form-control" id="firstname" placeholder="First name" name="firstname">
+    <label for="name">First name</label>
+    <input type="text" class="form-control" id="name" placeholder="First name" name="user[name]">
   </div>
   <div class="form-group">
     <label for="surname">Surname</label>
-    <input type="text" class="form-control" id="surname" placeholder="Surname" name="surname">
+    <input type="text" class="form-control" id="surname" placeholder="Surname" name="user[surname]">
   </div>
   <div class="form-group">
     <label for="email">Email</label>
-    <input type="email" class="form-control" id="email" placeholder="Email" name="email">
+    <input type="email" class="form-control" id="email" placeholder="Email" name="user[email]">
   </div>
   <div class="form-group">
     <label for="username">Username</label>
-    <input type="text" class="form-control" id="username" placeholder="Username" name="username">
+    <input type="text" class="form-control" id="username" placeholder="Username" name="user[username]">
   </div>
   <div class="form-group">
     <label for="password">Password</label>
-    <input type="password" class="form-control" id="password" placeholder="Password" name="password">
+    <input type="password" class="form-control" id="password" placeholder="Password" name="user[password]">
   </div>
   <div class="form-group">
-    <label for="retype_password">Password</label>
-    <input type="password" class="form-control" id="retype_password" placeholder="Re-type password" name="retype_password">
+    <label for="password_confirmation">Password confirmation</label>
+    <input type="password" class="form-control" id="password_confirmation" placeholder="Re-type password" name="user[password_confirmation]">
   </div>
   <button type="submit" class="btn btn-default">Sign up</button>
   <button type="reset" class="btn btn-default">Reset</button>
