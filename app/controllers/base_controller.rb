@@ -6,12 +6,24 @@ class BaseController < ApplicationController
 		end
 	end
 
+	def sign_up_form
+  		@user = User.new
+	end
+
+	def sign_up
+ 		@user = User.new(params[:user])
+		if @user.valid?
+	    	@user.save
+	  	else
+	    	render :action => "sign_up_form"
+	  	end
+	end
+
 	def login
 		user = User.where(:username => params[:username]).first
 		if (user)
 			if (user.password == Digest::SHA256.hexdigest(params[:password]))
 				session[:id] = user.id
-				session[:shift] = params[:shift]
 				redirect_to projects_path
 				return
 			end
@@ -27,7 +39,6 @@ class BaseController < ApplicationController
 			redirect_to root_path
 		else
 			@current_user = User.find(session[:id])
-			@shift = session[:shift]
 		end
 	end
 end
