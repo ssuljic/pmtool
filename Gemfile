@@ -50,4 +50,7 @@ group :doc do
 end
 
 # Use bcrypt for password protection and 
-gem 'bcrypt',               '3.1.7'
+gem 'bcrypt', '3.1.7'
+
+# Enabling CORS for andorid app
+gem 'rack-cors', :require => 'rack/cors'
