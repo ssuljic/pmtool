@@ -3,7 +3,71 @@
 }
 
 html {
-	background: url('images/lightback.jpg') no-repeat;
+	background: url('lightback.jpg') no-repeat;
 	background-size: cover;
 	background-attachment: fixed;
+	overflow: scroll;
+	position: relative;
+}
+
+body {
+	margin-bottom: 30px;
+}
+
+.logo .img-responsive {
+	margin-left: 20%;
+	margin-top: 8%;
+}
+
+.sign_up_form {
+	margin-bottom: 10%;
+}
+.login_form label, span, .sign_up_form label, span {
+	color:#22CB83;
+}
+
+.login_form input, .sign_up_form input {
+	border-radius: 10px;
+	border-style: solid;
+	border-width: 3px;
+	border-color: #0494D2;
+}
+
+.login_form button, .sign_up_form button{
+	border-radius: 10px;
+	border-style: solid;
+	border-width: 3px;
+	border-color: #0494D2;
+	color: #0494D2;
+	font-weight: bold;
+}
+
+.login_form button:hover, .sign_up_form button:hover {
+	border-radius: 10px;
+	border-style: solid;
+	border-width: 3px;
+	border-color: #0494D2;
+	color: #22CB83;
+	font-weight: bold;
+}
+
+.login_form a, a:hover, .sign_up_form a, a:hover {
+	color:#0494D2;
+}
+
+.footer {
+	background-color:white;
+	border-top: solid 3px gray;
+    padding-bottom: 0px;
+    position:fixed;
+    bottom:0;
+    width:100%;
+    left:0;
+}
+.footer #copyright {
+    font-size: 14px;
+    color: gray;
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }

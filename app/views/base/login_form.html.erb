@@ -1,5 +1,8 @@
 <div class="col-md-3"></div>
 <div class="col-md-6">
+<div class="logo">
+	<%= image_tag("pt.png", class: "img-responsive", ) %>
+<div>
 <%= form_tag (login_path()), class: 'login_form' do %>
 	<div class="form-group">
     <label for="email">Username</label>
@@ -10,7 +13,7 @@
     <input type="password" class="form-control" id="password" placeholder="Password" name="password">
   </div>
   <button type="submit" class="btn btn-default">Sign in</button>
-  Don't have an account?<%= link_to " Sign up now", sign_up_path %>
+  <span>Don't have an account? </span><%= link_to "Sign up now", sign_up_path %>
 <% end %>
 </div>
 <div class="col-md-3"></div>
