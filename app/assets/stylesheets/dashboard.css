@@ -1,0 +1,38 @@
+.page-header {
+	display: inline-block;
+	background: transparent;
+}
+
+.page-header .img-thumbnail {
+	display: inline-block;
+	background: transparent;
+	border: none;
+}
+
+.page-header h1 {
+	display: inline;
+	color: #22CB83;
+}
+
+.page-header a, a:hover {
+	color:#0494D2;
+}
+
+#sidebar li {
+	border-radius: 10px;
+}
+
+#sidebar li a {
+	color: #0494D2;
+	font-weight: bold;
+}
+
+#sidebar li a:hover {
+	color: #22CB83;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+#sidebar li:hover {
+	border-right: solid 3px #22CB83;
+}
