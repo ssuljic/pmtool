@@ -1,3 +1,9 @@
 .gray {
 	color: gray;
 }
+
+html {
+	background: url('images/lightback.jpg') no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+}
