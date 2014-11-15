@@ -1,6 +1,43 @@
 <ul class="list-group" id="sidebar">
-<li class="list-group-item"><%= link_to 'Home', projects_path %></li>
-<% @projects.each do |project| %>
-	<li class="list-group-item"><%= link_to project.name, project_path(project) %></li>
-<% end %>
+	<li class="list-group-item">
+		<span class="glyphicon glyphicon-home" id="icon">&nbsp;</span><%= link_to 'Home', projects_path %>
+	</li>
+	<li class="list-group-item">
+		<span class="glyphicon glyphicon-user" id="icon">&nbsp;</span><%= link_to 'My profile' %>
+	</li>
+</ul>
+<ul class="list-group" id="sidebar">
+	<li class="list-group-item">
+		<span class="glyphicon glyphicon-pencil" id="icon">&nbsp;</span><%= link_to 'Create new project'%>
+	</li>
+	<li class="list-group-item">
+		<span class="glyphicon glyphicon-flag" id="icon">&nbsp;</span><%= link_to 'Notifications'%>
+	</li>
+</ul>
+<ul class="list-group" id="sidebar"> &nbsp;&nbsp;My projects
+	<% if @myprojects.empty? %>
+		<br>&nbsp;&nbsp;<small> You've not created any project yet.</small>
+	<% else %>
+		<% @myprojects.each do |project| %>
+			<li class="list-group-item"><%= link_to project.name, project_path(project) %></li>
+		<% end %>
+	<% end %>
+</ul>
+<ul class="list-group" id="sidebar"> &nbsp;&nbsp;Assigned projects
+	<% if @assignedprojects.empty? %>
+		<br>&nbsp;&nbsp;<small> You've not assigned to any project yet.</small>
+	<% else %>
+		<% @assignedprojects.each do |project| %>
+			<li class="list-group-item"><%= link_to project.name, project_path(project) %></li>
+		<% end %>
+	<% end %>
+</ul>
+<ul class="list-group" id="sidebar"> &nbsp;&nbsp;Archieved projects
+	<% if @archievedprojects.empty? %>
+		<br>&nbsp;&nbsp;<small> You don't have completed projects.</small>
+	<% else %>
+		<% @archievedprojects.each do |project| %>
+			<li class="list-group-item"><%= link_to project.name, project_path(project) %></li>
+		<% end %>
+	<% end %>
 </ul>

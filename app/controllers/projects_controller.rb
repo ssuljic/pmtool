@@ -21,6 +21,8 @@ class ProjectsController < BaseController
 
 	private
 	def get_user_projects
-		@projects = @current_user.projects.includes(:activities => :tasks)
+		@myprojects = @current_user.projects.includes(:user_projects).where('role_id = 1 AND finished=FALSE')
+		@assignedprojects = @current_user.projects.includes(:user_projects).where('role_id = 2 AND finished=FALSE' )
+		@archievedprojects = @current_user.projects.includes(:user_projects).where('finished=TRUE' )
 	end
 end
