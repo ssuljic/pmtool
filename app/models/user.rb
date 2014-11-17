@@ -14,4 +14,12 @@ class User < ActiveRecord::Base
 	                    uniqueness: { case_sensitive: false }
 	has_secure_password
 	validates :password, length: { minimum: 6 }
+
+	def projects_by_role(role)
+		self.projects.includes(:user_projects).where('role_id = ? AND finished=FALSE', role.id)
+	end
+
+	def archieved_projects
+		self.projects.includes(:user_projects).where('finished=TRUE')
+	end
 end

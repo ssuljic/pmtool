@@ -19,10 +19,48 @@ class ProjectsController < BaseController
 		end
 	end
 
+	def new
+		@project = Project.new
+	end
+
+	def create
+		@project = Project.new(project_params)
+ 		respond_to do |format|
+ 			format.html {
+ 			if @project.save
+ 				@project.manager = @current_user
+		    redirect_to projects_path
+		  else
+		      redirect_to new_project_path
+		    end
+ 			}
+ 			format.json {
+ 				if @project.save
+ 					@project.manager = @current_user
+		      render json: { :message => 'Successful'} 
+		    else
+		      render json: { :message => 'Unsuccessful'}, :status => :unauthorized
+		    end	
+ 			}
+ 		end
+	end
+
 	private
 	def get_user_projects
-		@myprojects = @current_user.projects.includes(:user_projects).where('role_id = 1 AND finished=FALSE')
-		@assignedprojects = @current_user.projects.includes(:user_projects).where('role_id = 2 AND finished=FALSE' )
-		@archievedprojects = @current_user.projects.includes(:user_projects).where('finished=TRUE' )
+		@myprojects = @current_user.projects_by_role(Role.manager)
+		@assignedprojects = @current_user.projects_by_role(Role.member)
+		@archievedprojects = @current_user.archieved_projects
+	end
+	def project_params
+		params[:project][:finished] = false
+		params.require(:project).permit(:name, 
+			:short_description, 
+			:long_description, 
+			:start_date, 
+			:end_date,
+			:duration,
+			:member_count,
+			:budget,
+			:finished)
 	end
 end
