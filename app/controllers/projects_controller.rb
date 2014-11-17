@@ -6,7 +6,9 @@ class ProjectsController < BaseController
 
 		respond_to do |format|
 			format.html
-			format.json { render json: @projects.to_json(:include => {:activities => {:include => :tasks}}) }
+			format.json { render json: { :myprojects => @myprojects.includes(:activities => :tasks), 
+			:assignedprojects => @assignedprojects.includes(:activities => :tasks), 
+			:archievedprojects => @archievedprojects.includes(:activities => :tasks) } }
 		end
 	end
 
@@ -51,6 +53,7 @@ class ProjectsController < BaseController
 		@assignedprojects = @current_user.projects_by_role(Role.member)
 		@archievedprojects = @current_user.archieved_projects
 	end
+
 	def project_params
 		params[:project][:finished] = false
 		params.require(:project).permit(:name, 
