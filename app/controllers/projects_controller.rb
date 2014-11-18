@@ -12,6 +12,14 @@ class ProjectsController < BaseController
 		end
 	end
 
+	def all
+		@projects = @current_user.projects.includes(:activities => :tasks)
+		respond_to do |format|
+			format.html
+			format.json {render json: @projects.to_json(:include => {:activities => {:include => :tasks}}) }
+		end
+	end
+
 	def show
 		@project = @current_user.projects.includes(:activities => :tasks).find(params[:id])
 
