@@ -11,5 +11,6 @@ Pmtool::Application.routes.draw do
   		get 'all'
   	end
   end
-
+  resources :activities, :only => [:index, :show]
+  resources :tasks, :only => [:index, :show]
 end
