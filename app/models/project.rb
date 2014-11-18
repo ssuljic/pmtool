@@ -7,4 +7,8 @@ class Project < ActiveRecord::Base
 	def manager=(user)
 		UserProject.create(project: self, user: user, role: Role.manager)
 	end
+
+	def serializable_hash(options={})
+	  super(:include =>[:activities => { :include => :tasks }])
+	end
 end
