@@ -18,22 +18,32 @@ body {
 	margin-top: 8%;
 }
 
-.sign_up_form {
-	margin-bottom: 10%;
+ #new_project_form h5, #show_project h2, h3, #accordion h3  {
+ 	color: #22CB83;
+ }
+
+ #show_project p, #accordion p, #accordion ul li {
+ 	color: #0494D2;
+ 	font-style: italic;
+ 	font-size: 13px;
+ }
+
+.sign_up_form, #new_project_form {
+	margin-bottom: 8%;
 }
-.login_form label, span, .sign_up_form label, span {
+.login_form label, span, .sign_up_form label, span, #new_project_form label, span {
 	color:#22CB83;
 }
 
-.login_form input, .sign_up_form input {
-	border-radius: 10px;
+.login_form input, .sign_up_form input, #new_project_form .form-control {
+	border-radius: 0px;
 	border-style: solid;
 	border-width: 3px;
 	border-color: #0494D2;
 }
 
-.login_form button, .sign_up_form button{
-	border-radius: 10px;
+.login_form button, .sign_up_form button, #new_project_form .btn, #show_project button {
+	border-radius: 0px;
 	border-style: solid;
 	border-width: 3px;
 	border-color: #0494D2;
@@ -41,8 +51,8 @@ body {
 	font-weight: bold;
 }
 
-.login_form button:hover, .sign_up_form button:hover {
-	border-radius: 10px;
+.login_form button:hover, .sign_up_form button:hover, #new_project_form .btn:hover, #show_project button:hover {
+	border-radius: 0px;
 	border-style: solid;
 	border-width: 3px;
 	border-color: #0494D2;
@@ -50,8 +60,18 @@ body {
 	font-weight: bold;
 }
 
-.login_form a, a:hover, .sign_up_form a, a:hover {
+.login_form a, a:hover, .sign_up_form a, a:hover, #new_project_form a, a:hover, #show_project a{
 	color:#0494D2;
+}
+
+ 
+#show_project a:hover {
+	color: #22CB83;
+	text-decoration: none;
+}
+
+#show_project .jumbotron {
+	border-radius: 0px;
 }
 
 .footer {

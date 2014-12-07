@@ -1,5 +1,6 @@
 # encoding: UTF-8
 class BaseController < ApplicationController
+	
 	def login_form
 		if session[:id]
 			redirect_to projects_path
@@ -11,23 +12,23 @@ class BaseController < ApplicationController
 	end
 
 	def sign_up
- 		@user = User.new(user_params)
- 		@user.session_key = Digest::SHA256.hexdigest(params[:user][:password])
- 		respond_to do |format|
- 			format.html {
- 				if @user.save
-		      redirect_to root_path
-		    else
-		      redirect_to sign_up_path
-		    end
- 			}
- 			format.json {
- 				if @user.save
-		      render json: { :signup => 'Successful'} 
-		    else
-		      render json: { :signup => 'Unsuccessful'}, :status => :unauthorized
-		    end	
- 			}
+		@user = User.new(user_params)
+		@user.session_key = Digest::SHA256.hexdigest(params[:user][:password])
+		respond_to do |format|
+			format.html {
+				if @user.save
+			  redirect_to root_path
+			else
+			  redirect_to sign_up_path
+			end
+			}
+			format.json {
+				if @user.save
+			  render json: { :signup => 'Successful'} 
+			else
+			  render json: { :signup => 'Unsuccessful'}, :status => :unauthorized
+			end	
+			}
 	  end
 
 	end
@@ -65,7 +66,13 @@ class BaseController < ApplicationController
 		end
 	end
 
-  def user_params
-    params.require(:user).permit(:name, :surname, :email, :username, :password,:password_confirmation)
-  end
+	def get_user_projects
+		@myprojects = @current_user.projects_by_role(Role.manager)
+		@assignedprojects = @current_user.projects_by_role(Role.member)
+		@archievedprojects = @current_user.archieved_projects
+	end
+
+	def user_params
+		params.require(:user).permit(:name, :surname, :email, :username, :password,:password_confirmation)
+	end
 end

@@ -1,6 +1,5 @@
 class ProjectsController < BaseController
 	before_filter :get_user_projects
-
 	def index
 		@tasks = @current_user.tasks.includes(:activity => :project)
 
@@ -54,13 +53,7 @@ class ProjectsController < BaseController
  			}
  		end
 	end
-
 	private
-	def get_user_projects
-		@myprojects = @current_user.projects_by_role(Role.manager)
-		@assignedprojects = @current_user.projects_by_role(Role.member)
-		@archievedprojects = @current_user.archieved_projects
-	end
 
 	def project_params
 		params[:project][:finished] = false

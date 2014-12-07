@@ -1,6 +1,6 @@
 <%= render 'shared/header' %>
 
-<div class="container" id="dashboard">
+<div class="container" id="new_project_form">
 	<div class="row">
 		<div class="col-md-3">
 			<%= render 'shared/sidebar' %>
@@ -9,7 +9,7 @@
 			<div class="col-md-6">
 				<div class="container-fluid">
 					<%= form_for @project, :html => {:class => 'form'} do |f| %>
-						<h1>Create new project</h1>
+						<h5><%= link_to "HOME", projects_path %> > CREATE NEW PROJECT</h5>
 						<div class="form-group">
 							<%= f.label :name %>
 							<%= f.text_field :name, class: "form-control" %>
@@ -51,7 +51,7 @@
 						</div>
 
 
-						<%= f.submit "Create project", class: "btn btn-primary" %>
+						<%= f.submit "Create project", class: "btn btn-default" %>
 					<% end %>
 				</div>
 			</div>
