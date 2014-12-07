@@ -1,0 +1,20 @@
+<%= render 'shared/header' %>
+
+<div class="container" id="members_index">
+	<div class="row">
+		<div class="col-md-3">
+			<%= render 'shared/sidebar' %>
+		</div>
+		<div class="col-md-9">
+			<div class="horizontal-form" id="show_members">
+				<% @members.each do |member| %>
+					<div class="form-group">
+						<label><%= member.username %></label>
+						<button class="btn btn-default">Edit</button>
+						<button class="btn btn-default">Delete</button>
+					</div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
