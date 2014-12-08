@@ -100,3 +100,9 @@ body {
 	font-weight: bold;
 	font-size: 15px;
 }
+.jumbotron {
+	background-color: white;
+}
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+	background: white !important;
+}
