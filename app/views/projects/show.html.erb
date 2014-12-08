@@ -7,9 +7,10 @@
 		</div>
 		<div class="col-md-9" id="show_project">
 			<div class="jumbotron">
-			  <% if @project.is_manager?(@current_user) %>
+			  <% if @current_user.is_manager?(@project) %>
 				  <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil" id="icon"></span> Edit project</button>
-				  <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-tags" id="icon"> </span> <%= link_to " Edit members", members_path %></button>
+				  <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil" id="icon"></span> <%= link_to 'Edit activities', project_activities_path(@project) %></button>
+				  <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-tags" id="icon"> </span> <%= link_to " Edit members", project_members_path(@project) %></button>
 				  <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-file" id="icon"></span> Create report</button>
 			  <% end %>
 			  <h2><%= @project.name %></h2>

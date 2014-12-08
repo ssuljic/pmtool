@@ -22,4 +22,8 @@ class User < ActiveRecord::Base
 	def archieved_projects
 		self.projects.includes(:user_projects).where('finished=TRUE')
 	end
+
+	def is_manager?(project)
+		self.projects.find(project).roles.includes(:user_projects).where('user_id = ?', self.id).first == Role.manager
+	end
 end
