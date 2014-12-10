@@ -6,7 +6,7 @@ class ActivitiesController < BaseController
 			format.html
 			format.json {
 				begin
-					render json: @project.activities
+					render json: { activities: @project.activities }
 				rescue
 					render json: { message: 'Record not found!' }, :status => :bad_request
 				end
@@ -17,7 +17,7 @@ class ActivitiesController < BaseController
 	def show
 		begin
 			project = @current_user.projects.find(params[:project_id])
-			render json: project.activities.find(params[:id])
+			render json: { activity: project.activities.find(params[:id]) }
 		rescue
 			render json: { message: 'Record not found!' }, :status => :bad_request
 		end

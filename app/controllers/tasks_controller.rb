@@ -6,9 +6,9 @@ class TasksController < BaseController
 				render json: activity.tasks
 			elsif params[:project_id]
 				project = @current_user.projects.find(params[:project_id])
-				render json: project.tasks
+				render json: { tasks: project.tasks }
 			else
-				render json: @current_user.tasks
+				render json: { tasks: @current_user.tasks }
 			end
 		rescue
 			render json: { message: 'Record not found!' }, :status => :bad_request
@@ -22,9 +22,9 @@ class TasksController < BaseController
 				render json: activity.tasks.find(params[:id])
 			elsif params[:project_id]
 				project = @current_user.projects.find(params[:project_id])
-				render json: project.tasks.find(params[:id])
+				render json: { task: project.tasks.find(params[:id]) }
 			else
-				render json: @current_user.tasks.find(params[:id])
+				render json: { task: @current_user.tasks.find(params[:id]) }
 			end
 		rescue
 			render json: { message: 'Record not found!' }, :status => :bad_request

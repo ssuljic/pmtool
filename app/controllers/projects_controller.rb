@@ -15,7 +15,9 @@ class ProjectsController < BaseController
 		@projects = @current_user.projects.includes(:activities => :tasks)
 		respond_to do |format|
 			format.html
-			format.json {render json: @projects.to_json(:include => {:activities => {:include => :tasks}}) }
+			format.json {
+				render json: { projects: @projects }
+			}
 		end
 	end
 
@@ -24,7 +26,9 @@ class ProjectsController < BaseController
 
 		respond_to do |format|
 			format.html
-			format.json { render json: @project.to_json(:include => {:activities => {:include => :tasks}}) }
+			format.json { 
+				render json: { project: @project }
+			}
 		end
 	end
 
