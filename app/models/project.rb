@@ -12,4 +12,12 @@ class Project < ActiveRecord::Base
 	def serializable_hash(options={})
 	  super(:include =>[:activities => { :include => :tasks }])
 	end
+
+	def get_available_users
+		a = []
+		self.users.each do |u|
+			a << u.id
+		end
+		User.where('id not in (?)', a)
+	end
 end

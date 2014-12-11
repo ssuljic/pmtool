@@ -5,27 +5,36 @@
 		<div class="col-md-3">
 			<%= render 'shared/sidebar' %>
 		</div>
+		<script>
+		$(document).ready(function() {
+			 $("#memberTags").tagit({
+			 		availableTags: <%= raw @avail_usernames %>,
+			 		autocomplete: {delay: 0, minLength: 2},
+			 		tagLimit:5
+			 });
+		});
+		</script>
 		<div class="col-md-9">
 			<div class="horizontal-form" id="show_members">
 				<% @members.each do |member| %>
 					<div class="form-group">
-						<label style="width:50%;"><%= member.username %></label>
-						<button class="btn btn-default">Edit</button>
-						<button class="btn btn-default">Delete</button>
+							<label style="width:10%"><%= member.username + "   |   "%></label>
+							<label style="width:20%"><%= member.get_available_hours(params[:project_id]).to_s + " hrs available   |  "%></label>
+							<label style="width:20%"><%= member.get_busy_hours(params[:project_id]).to_s + " hrs busy   |   "%></label>
+							<label style="width:20%"><%= member.get_tasks_count(params[:project_id]).to_s + " assigned tasks  |   "%></label>
+						<button class="btn btn-default"><span class="glyphicon glyphicon-pencil" id="icon"> </span> Edit</button>
+						<button class="btn btn-default"><span class="glyphicon glyphicon-trash" id="icon"> </span> Delete</button>
 					</div>
 				<% end %>
+			<div class="row">
+				<div class="col-md-10">
+					<ul id="memberTags"> </ul>
+				</div>
+				<div class="col-md-2" style="padding-left:0px;">
+					<button class="btn btn-default"> Add</button>
+				</div>
 			</div>
-			<script type="text/javascript">
-			    $(document).ready(function() {
-			        $("#myTags").tagit();
-			    });
-			</script>
-
-			<ul id="myTags">
-			    <!-- Existing list items will be pre-added to the tags -->
-			    <li>Tag1</li>
-			    <li>Tag2</li>
-			</ul>
+			</div>
 		</div>
 	</div>
 </div>

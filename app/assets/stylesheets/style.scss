@@ -31,7 +31,7 @@ body {
 .sign_up_form, #new_project_form {
 	margin-bottom: 8%;
 }
-.login_form label, span, .sign_up_form label, span, #new_project_form label, span {
+.login_form label, span, .sign_up_form label, span, #new_project_form label, span, #show_members label {
 	color:#22CB83;
 }
 
@@ -42,22 +42,24 @@ body {
 	border-color: #0494D2;
 }
 
-.login_form button, .sign_up_form button, #new_project_form .btn, #show_project button {
+.login_form button, .sign_up_form button, #new_project_form .btn, #show_project button, #show_members .btn {
 	border-radius: 0px;
 	border-style: solid;
 	border-width: 3px;
 	border-color: #0494D2;
 	color: #0494D2;
 	font-weight: bold;
+
 }
 
-.login_form button:hover, .sign_up_form button:hover, #new_project_form .btn:hover, #show_project button:hover {
+.login_form button:hover, .sign_up_form button:hover, #new_project_form .btn:hover, #show_project button:hover, #show_members .btn:hover {
 	border-radius: 0px;
 	border-style: solid;
 	border-width: 3px;
 	border-color: #0494D2;
 	color: #22CB83;
 	font-weight: bold;
+	background: #FFFFFF;
 }
 
 .login_form a, a:hover, .sign_up_form a, a:hover, #new_project_form a, a:hover, #show_project a{
@@ -105,4 +107,14 @@ body {
 }
 .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
 	background: white !important;
+}
+
+.avail  {
+	color:green;
+	font-weight: none;
+}
+
+.busy {
+	color:red;
+	font-weight: none;
 }
