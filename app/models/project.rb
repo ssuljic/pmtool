@@ -6,7 +6,11 @@ class Project < ActiveRecord::Base
 	has_many :tasks, -> { distinct }, :through => :activities
 
 	def manager=(user)
-		UserProject.create(project: self, user: user, role: Role.manager)
+		UserProject.create(project: self, user: user, role: Role.manager, number_of_hours: 0)
+	end
+
+	def member=(user)
+		UserProject.create(project: self, user: user, role: Role.member, number_of_hours: 0)
 	end
 
 	def serializable_hash(options={})

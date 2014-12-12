@@ -10,12 +10,15 @@
 			 $("#memberTags").tagit({
 			 		availableTags: <%= raw @avail_usernames %>,
 			 		autocomplete: {delay: 0, minLength: 2},
-			 		tagLimit:5
+			 		tagLimit:5,
+			 		beforeTagAdded: function(event, ui) {
+			        if($.inArray(ui.tagLabel, <%= raw @avail_usernames %>)<0) return false;
+			        }
 			 });
 		});
 		</script>
 		<div class="col-md-9">
-			<div class="horizontal-form" id="show_members">
+			<form class="horizontal-form" id="show_members" method="post">
 				<% @members.each do |member| %>
 					<div class="form-group">
 							<label style="width:10%"><%= member.username + "   |   "%></label>
@@ -31,10 +34,10 @@
 					<ul id="memberTags"> </ul>
 				</div>
 				<div class="col-md-2" style="padding-left:0px;">
-					<button class="btn btn-default"> Add</button>
+					<button type="submit" class="btn btn-default" id="add"> Add</button>
 				</div>
 			</div>
-			</div>
+			</form>
 		</div>
 	</div>
 </div>
