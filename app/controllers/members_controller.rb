@@ -12,6 +12,10 @@ class MembersController < BaseController
 		redirect_to project_members_path
 	end
 
-	def destroy		
+	def destroy
+		if (User.find(params[:id]).get_tasks_count(params[:project_id])==0) 
+			UserProject.where(:user_id=>params[:id]).where(:project_id=>params[:project_id]).first.destroy
+		end
+		redirect_to project_members_path
 	end
 end

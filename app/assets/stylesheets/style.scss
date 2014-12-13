@@ -62,12 +62,12 @@ body {
 	background: #FFFFFF;
 }
 
-.login_form a, a:hover, .sign_up_form a, a:hover, #new_project_form a, a:hover, #show_project a{
+.login_form a, a:hover, .sign_up_form a, a:hover, #new_project_form a, a:hover, #show_project a, #show_members a{
 	color:#0494D2;
 }
 
  
-#show_project a:hover {
+#show_project a:hover, #show_members a:hover{
 	color: #22CB83;
 	text-decoration: none;
 }
