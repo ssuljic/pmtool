@@ -8,7 +8,7 @@ class BaseController < ApplicationController
 	end
 
 	def sign_up_form
-		@user = User.new
+		@user=User.new
 	end
 
 	def sign_up
@@ -16,10 +16,10 @@ class BaseController < ApplicationController
 		@user.session_key = Digest::SHA256.hexdigest(params[:user][:password])
 		respond_to do |format|
 			format.html {
-				if @user.save
+			if @user.save
 			  redirect_to root_path
 			else
-			  redirect_to sign_up_path
+			  render 'sign_up_form'
 			end
 			}
 			format.json {

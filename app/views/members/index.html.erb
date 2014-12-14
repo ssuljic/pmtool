@@ -11,10 +11,12 @@
 			 		availableTags: <%= raw @avail_usernames %>,
 			 		autocomplete: {delay: 0, minLength: 2},
 			 		tagLimit:5,
+			 		placeholderText   : "New members...",
 			 		beforeTagAdded: function(event, ui) {
 			        if($.inArray(ui.tagLabel, <%= raw @avail_usernames %>)<0) return false;
 			        }
 			 });
+
 		});
 		</script>
 		<div class="col-md-9">
@@ -32,11 +34,14 @@
 				<div class="col-md-10">
 					<ul id="memberTags"> </ul>
 				</div>
-				<div class="col-md-2" style="padding-left:0px;">
+				<div class="col-md-2">
 					<button type="submit" class="btn btn-default" id="add"><span class="glyphicon glyphicon-plus" id="icon>"></span> Add</button>
 				</div>
 			</div>
 			</form>
 		</div>
+	</div>
+	<div id="dialog" title="Removing failed">
+  		<p id="error_text"><%= @error %></p>
 	</div>
 </div>

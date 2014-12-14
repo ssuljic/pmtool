@@ -7,26 +7,56 @@
 <div class="form-group">
     <label for="name">First name</label>
     <input type="text" class="form-control" id="name" placeholder="First name" name="user[name]">
+    <% if @user.errors.any? %>
+      <% @user.errors[:name].each do |error| %>
+      <div class="alert alert-danger" id="error" role="alert"><span class="glyphicon glyphicon-remove-circle">&nbsp;</span><%= error %></div>
+      <% end %>
+    <% end %>
   </div>
   <div class="form-group">
     <label for="surname">Surname</label>
     <input type="text" class="form-control" id="surname" placeholder="Surname" name="user[surname]">
+    <% if @user.errors.any? %>
+      <% @user.errors[:surname].each do |error| %>
+      <div class="alert alert-danger" id="error" role="alert"><span class="glyphicon glyphicon-remove-circle">&nbsp;</span><%= error %></div>
+      <% end %>
+    <% end %>
   </div>
   <div class="form-group">
     <label for="email">Email</label>
     <input type="email" class="form-control" id="email" placeholder="Email" name="user[email]">
+    <% if @user.errors.any? %>
+      <% @user.errors[:email].each do |error| %>
+      <div class="alert alert-danger" id="error" role="alert"><span class="glyphicon glyphicon-remove-circle">&nbsp;</span><%= error %></div>
+      <% end %>
+    <% end %>
   </div>
   <div class="form-group">
     <label for="username">Username</label>
     <input type="text" class="form-control" id="username" placeholder="Username" name="user[username]">
+    <% if @user.errors.any? %>
+      <% @user.errors[:username].each do |error| %>
+      <div class="alert alert-danger" id="error" role="alert"><span class="glyphicon glyphicon-remove-circle">&nbsp;</span><%= error %></div>
+      <% end %>
+    <% end %>
   </div>
   <div class="form-group">
     <label for="password">Password</label>
     <input type="password" class="form-control" id="password" placeholder="Password" name="user[password]">
+    <% if @user.errors.any? %>
+      <% @user.errors[:password].each do |error| %>
+      <div class="alert alert-danger" id="error" role="alert"><span class="glyphicon glyphicon-remove-circle">&nbsp;</span><%= error %></div>
+      <% end %>
+    <% end %>
   </div>
   <div class="form-group">
     <label for="password_confirmation">Password confirmation</label>
     <input type="password" class="form-control" id="password_confirmation" placeholder="Re-type password" name="user[password_confirmation]">
+    <% if @user.errors.any? %>
+      <% @user.errors[:password_confirmation].each do |error| %>
+      <div class="alert alert-danger" id="error" role="alert"><span class="glyphicon glyphicon-remove-circle">&nbsp;</span><%= error %></div>
+      <% end %>
+    <% end %>
   </div>
   <button type="submit" class="btn btn-default">Sign up</button>
   <button type="reset" class="btn btn-default">Reset</button>
