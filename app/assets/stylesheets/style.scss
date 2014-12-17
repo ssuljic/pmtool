@@ -42,7 +42,12 @@ body {
 	border-color: #0494D2;
 }
 
-.login_form button, .sign_up_form button, #new_project_form .btn, #show_project button, #show_members .btn {
+.ui-accordion .ui-accordion-header {
+	border-radius: 0px;
+	border-color: #22CB83;
+}
+
+.login_form button, .sign_up_form button, #new_project_form .btn, #show_project button, #show_members .btn,  {
 	border-radius: 0px;
 	border-style: solid;
 	border-width: 3px;
@@ -116,3 +121,5 @@ body {
 #error span {
 	color: #a94442;
 }
+
+
