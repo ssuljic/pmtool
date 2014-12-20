@@ -6,6 +6,8 @@ Pmtool::Application.routes.draw do
   post 'sign_up' => 'base#sign_up'
   post 'login' => 'base#login'
 
+  resources :profiles, :only => [:show, :edit, :update]
+
   resources :projects do
     collection do
       get 'all'

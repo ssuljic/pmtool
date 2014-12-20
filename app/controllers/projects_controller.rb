@@ -36,6 +36,15 @@ class ProjectsController < BaseController
 		@project = Project.new
 	end
 
+	def edit
+		@project = Project.find(params[:id])
+	end
+
+	def update
+		Project.find(params[:id]).update(project_params)
+		redirect_to project_path(params[:id])		
+	end
+
 	def create
 		@project = Project.new(project_params)
  		respond_to do |format|
