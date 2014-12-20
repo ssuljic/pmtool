@@ -6,11 +6,19 @@
 			<%= render 'shared/sidebar' %>
 		</div>
 		<div class="col-md-9">
-			<button class="btn btn-default"><%= link_to ' Add new task', new_task_path(activity_id: params[:activity_id], project_id: params[:project_id]) %></button>
+			<button class="btn btn-default"><span class="glyphicon glyphicon-plus" id="icon"></span><%= link_to ' Add new task', new_task_path(activity_id: params[:activity_id], project_id: params[:project_id]) %></button>
 			<div id="tasks_accordion">
 				<% @tasks.each do |task| %>
 				  <h3><%= task.name %></h3>
 				  <div>
+				  <button class="btn btn-default" style="float: right; margin-left:1%;">
+				   <span class="glyphicon glyphicon-pencil" id="icon"></span>
+				  	<%= link_to " Edit task", edit_task_path(activity_id: params[:activity_id], project_id: params[:project_id], id: task.id) %>
+				  	</button>
+				  	 <button class="btn btn-default" style="float: right;">
+				   <span class="glyphicon glyphicon-paperclip" id="icon"></span>
+				  	<%= link_to " Add resources", edit_task_path(activity_id: params[:activity_id], project_id: params[:project_id], id: task.id) %>
+				  	</button>
 				  <span style="font-weight: bold;">Assigned to: <%= task.user.username %></span><br/>
 				  	<span style="font-weight: bold;">Description: </span><%= task.description %><br/>
 				  	<span style="font-weight: bold;">Duration: </span><%= task.duration %><span> hours</span><br/>
@@ -18,11 +26,38 @@
 				  	<span style="font-weight: bold;">Progress status: </span><%= task.status %><span> %</span><br/>
 				  	<span style="font-weight: bold;">Created at: </span><%= task.created_at.to_formatted_s(:short)  %><br/>
 				  	<span style="font-weight: bold;">Updated at: </span><%= task.updated_at.to_formatted_s(:short) %><br/>
+
 				  	<span style="font-weight: bold;">Resources: </span><br>
 				  	<% task.uploads.each do |upload| %>
 				  		<%= link_to upload.filename, task_upload_path(task, upload) %><br>
 				  	<% end %>
 				  	<%= link_to 'Upload resources', new_task_upload_path(task), :class => 'btn btn-default' %>
+
+
+
+				  	<div>
+					  	<span class='icon'> | </span>
+					  	<button id='toggle_comments'><span class='glyphicon glyphicon-comment'></span> Show comments</button>
+					  	<br/><br/>
+				  	</div>
+
+				  	<div id='comments_list'>
+				  		<% task.comments.each do |comm| %>
+				  			<div class="comment">
+				  				<span><%= comm.content %><br/>
+				  				<span class="gray">by <%= comm.user.username %> at <%= comm.created_at.to_formatted_s(:long) %></span>
+				  			</div>
+				  		<% end %>
+				  	</div>
+
+				  	<div id='add_comment'>
+				  		<div class="form-group">
+    						<input type="text" class="form-control" id="name" placeholder="Write comment..." name="comment"></div>
+    						<span class='icon'> | </span>
+					  		<button><span class='glyphicon glyphicon-plus'></span> Add your comment</button>
+				  	</div>
+
+
 				  </div>
 			  <% end %>
 			</div>

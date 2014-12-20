@@ -48,7 +48,7 @@ class TasksController < BaseController
 		respond_to do |format|
  			format.html {
  			if @task.save
-		    redirect_to root_path
+		    redirect_to tasks_path(project_id: Activity.find(task_params[:activity_id]).project.id, activity_id: task_params[:activity_id])
 		  else
 		    redirect_to new_task_path
 		  end
@@ -61,6 +61,16 @@ class TasksController < BaseController
 		    end	
  			}
  		end
+	end
+
+	def edit
+		@task = Task.find(params[:id])
+		@users = Activity.find(params[:activity_id]).project.users
+	end
+
+	def update
+		Task.find(params[:id]).update(task_params)
+		redirect_to tasks_path(project_id: Activity.find(task_params[:activity_id]).project.id, activity_id: task_params[:activity_id])
 	end
 
 	private
