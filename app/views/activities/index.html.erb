@@ -6,6 +6,7 @@
 			<%= render 'shared/sidebar' %>
 		</div>
 		<div class="col-md-9">
+			<%= link_to 'Create New Activity', new_project_activity_path, :class => "btn btn-success" %><br><br><br>
 			<div class="horizontal-form">
 				<% @project.activities.each do |activity| %>
 					<div class="form-group">

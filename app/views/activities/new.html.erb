@@ -8,7 +8,7 @@
 		<div class="col-md-9">
 			<div class="col-md-6">
 				<div class="container-fluid">
-					<%= form_for @activity, :url => project_activity_path, :html => {:method => :put, :class => 'form'} do |f| %>
+					<%= form_for @activity, :url => project_activities_path do |f| %>
 						<div class="form-group">
 							<%= f.label :name %>
 							<%= f.text_field :name, class: "form-control" %>
@@ -29,7 +29,7 @@
 							<%= f.check_box :finished %>
 						</div>
 
-						<%= f.submit "Update activity", class: "btn btn-default" %>
+						<%= f.submit "Create activity", class: "btn btn-default" %>
 					<% end %>
 				</div>
 			</div>
