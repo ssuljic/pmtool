@@ -1,18 +1,25 @@
 class TasksController < BaseController
+	before_filter :get_user_projects
 	def index
-		begin
+		# begin
 			if params[:activity_id] && params[:project_id]
 				activity = @current_user.projects.find(params[:project_id]).activities.find(params[:activity_id])
-				render json: activity.tasks
+				@tasks=activity.tasks
 			elsif params[:project_id]
 				project = @current_user.projects.find(params[:project_id])
-				render json: { tasks: project.tasks }
+				@tasks = project.tasks
 			else
-				render json: { tasks: @current_user.tasks }
+				@tasks = @current_user.tasks
 			end
-		rescue
-			render json: { message: 'Record not found!' }, :status => :bad_request
-		end
+			respond_to do |format|
+				format.html
+				format.json {
+					render json: { tasks: @tasks }
+				}
+			end
+		# rescue
+		# 	render json: { message: 'Record not found!' }, :status => :bad_request
+		# end
 	end
 
 	def show
@@ -30,4 +37,43 @@ class TasksController < BaseController
 			render json: { message: 'Record not found!' }, :status => :bad_request
 		end
 	end
+
+	def new
+		@task = Task.new
+		@users = Activity.find(params[:activity_id]).project.users
+	end
+
+	def create
+		@task = Task.new(task_params)
+		raise
+		respond_to do |format|
+ 			format.html {
+ 			if @task.save
+		    redirect_to root_path
+		  else
+		    redirect_to new_task_path
+		  end
+ 			}
+ 			format.json {
+ 				if @task.save
+		      render json: { :message => 'Successful'} 
+		    else
+		      render json: { :message => 'Unsuccessful'}, :status => :unauthorized
+		    end	
+ 			}
+ 		end
+	end
+
+	private
+	def task_params
+		params.require(:task).permit(:name,
+			:description,
+			:duration,
+			:deadline,
+			:status,
+			:user_id,
+			:activity_id
+			)
+	end
+
 end

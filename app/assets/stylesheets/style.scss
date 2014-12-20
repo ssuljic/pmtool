@@ -47,7 +47,7 @@ body {
 	border-color: #22CB83;
 }
 
-.login_form button, .sign_up_form button, #new_project_form .btn, #show_project button, #show_members .btn,  {
+.login_form button, .sign_up_form button, #new_project_form .btn, #show_project button, #show_members .btn, #tasks_index .btn {
 	border-radius: 0px;
 	border-style: solid;
 	border-width: 3px;
@@ -57,7 +57,7 @@ body {
 
 }
 
-.login_form button:hover, .sign_up_form button:hover, #new_project_form .btn:hover, #show_project button:hover, #show_members .btn:hover {
+.login_form button:hover, .sign_up_form button:hover, #new_project_form .btn:hover, #show_project button:hover, #show_members .btn:hover, #tasks_index .btn:hover {
 	border-radius: 0px;
 	border-style: solid;
 	border-width: 3px;
@@ -120,6 +120,11 @@ body {
 
 #error span {
 	color: #a94442;
+}
+
+#accordion .btn .btn-default a {
+	color: #22CB83;
+	border-radius: 0px;
 }
 
 

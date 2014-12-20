@@ -1,0 +1,27 @@
+<%= render 'shared/header' %>
+
+<div class="container" id="tasks_index">
+	<div class="row">
+		<div class="col-md-3">
+			<%= render 'shared/sidebar' %>
+		</div>
+		<div class="col-md-9">
+			<button class="btn btn-default"><%= link_to ' Add new task', new_task_path(activity_id: params[:activity_id], project_id: params[:project_id]) %></button>
+			<div id="tasks_accordion">
+				<% @tasks.each do |task| %>
+				  <h3><%= task.name %></h3>
+				  <div>
+				  <span style="font-weight: bold;">Assigned to: <%= task.user.username %></span><br/>
+				  	<span style="font-weight: bold;">Description: </span><%= task.description %><br/>
+				  	<span style="font-weight: bold;">Duration: </span><%= task.duration %><span> hours</span><br/>
+				  	<span style="font-weight: bold;">Deadline: </span><%= task.deadline.to_formatted_s(:long) %><br/>
+				  	<span style="font-weight: bold;">Progress status: </span><%= task.status %><span> %</span><br/>
+				  	<span style="font-weight: bold;">Created at: </span><%= task.created_at.to_formatted_s(:short)  %><br/>
+				  	<span style="font-weight: bold;">Updated at: </span><%= task.updated_at.to_formatted_s(:short) %><br/>
+				  	<span style="font-weight: bold;">Resources: </span>
+				  </div>
+			  <% end %>
+			</div>
+		</div>
+	</div>
+<div>

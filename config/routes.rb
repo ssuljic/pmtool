@@ -13,6 +13,7 @@ Pmtool::Application.routes.draw do
     resources :members, :only => [:index, :create, :destroy]
     resources :activities
   end
-  
-  resources :tasks, :only => [:index, :show]
+
+  resources :tasks, :only => [:index, :new, :create, :update, :destroy]
+
 end
