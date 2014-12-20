@@ -1,0 +1,19 @@
+<%= render 'shared/header' %>
+
+<div class="container" id="new_project_form">
+	<div class="row">
+		<div class="col-md-3">
+			<%= render 'shared/sidebar' %>
+		</div>
+		<div class="col-md-9">
+			<div class="col-md-6">
+				<div class="container-fluid">
+					<%= form_for @upload, :url => task_uploads_path, :html => {:multipart=>true} do |f| %>
+						<%= f.file_field :file_data %><br>
+						<%= f.submit 'Upload file', :class => 'btn btn-default' %>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

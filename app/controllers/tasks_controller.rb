@@ -4,12 +4,12 @@ class TasksController < BaseController
 		# begin
 			if params[:activity_id] && params[:project_id]
 				activity = @current_user.projects.find(params[:project_id]).activities.find(params[:activity_id])
-				@tasks=activity.tasks
+				@tasks = activity.tasks.includes(:uploads)
 			elsif params[:project_id]
 				project = @current_user.projects.find(params[:project_id])
-				@tasks = project.tasks
+				@tasks = project.tasks.includes(:uploads)
 			else
-				@tasks = @current_user.tasks
+				@tasks = @current_user.tasks.includes(:uploads)
 			end
 			respond_to do |format|
 				format.html
@@ -45,7 +45,6 @@ class TasksController < BaseController
 
 	def create
 		@task = Task.new(task_params)
-		raise
 		respond_to do |format|
  			format.html {
  			if @task.save

@@ -16,6 +16,8 @@ Pmtool::Application.routes.draw do
     resources :activities
   end
 
-  resources :tasks, :only => [:index, :new, :create, :update, :destroy]
+  resources :tasks, :only => [:index, :new, :create, :update, :destroy] do
+    resources :uploads
+  end
 
 end

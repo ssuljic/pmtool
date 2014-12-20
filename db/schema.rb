@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141109195255) do
+ActiveRecord::Schema.define(version: 20141220223113) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,10 @@ ActiveRecord::Schema.define(version: 20141109195255) do
   end
 
   add_index "activities", ["project_id"], name: "index_activities_on_project_id", using: :btree
+
+  create_table "binaries", force: true do |t|
+    t.binary "data"
+  end
 
   create_table "projects", force: true do |t|
     t.string   "name"
@@ -63,6 +67,16 @@ ActiveRecord::Schema.define(version: 20141109195255) do
 
   add_index "tasks", ["activity_id"], name: "index_tasks_on_activity_id", using: :btree
   add_index "tasks", ["user_id"], name: "index_tasks_on_user_id", using: :btree
+
+  create_table "uploads", force: true do |t|
+    t.string   "filename"
+    t.string   "content_type"
+    t.integer  "size"
+    t.integer  "task_id"
+    t.integer  "binary_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "user_activities", force: true do |t|
     t.integer  "user_id",     null: false

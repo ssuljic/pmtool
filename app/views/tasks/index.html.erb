@@ -18,7 +18,11 @@
 				  	<span style="font-weight: bold;">Progress status: </span><%= task.status %><span> %</span><br/>
 				  	<span style="font-weight: bold;">Created at: </span><%= task.created_at.to_formatted_s(:short)  %><br/>
 				  	<span style="font-weight: bold;">Updated at: </span><%= task.updated_at.to_formatted_s(:short) %><br/>
-				  	<span style="font-weight: bold;">Resources: </span>
+				  	<span style="font-weight: bold;">Resources: </span><br>
+				  	<% task.uploads.each do |upload| %>
+				  		<%= link_to upload.filename, task_upload_path(task, upload) %><br>
+				  	<% end %>
+				  	<%= link_to 'Upload resources', new_task_upload_path(task), :class => 'btn btn-default' %>
 				  </div>
 			  <% end %>
 			</div>

@@ -34,9 +34,23 @@ class ActivitiesController < BaseController
 	def create
 		@activity = Activity.new(activity_params)
 		@activity.project = Project.find(params[:project_id])
-		@activity.save!
 
-		redirect_to project_activities_path(params[:project_id])
+		respond_to do |format|
+ 			format.html {
+ 			if @activity.save
+		    redirect_to project_activities_path(params[:project_id])
+		  else
+		    redirect_to new_project_activity_path(params[:project_id])
+		  end
+ 			}
+ 			format.json {
+ 				if @activity.save
+		      render json: { :message => 'Successful'} 
+		    else
+		      render json: { :message => 'Unsuccessful'}, :status => :unauthorized
+		    end	
+ 			}
+ 		end
 	end
 
 	def update
