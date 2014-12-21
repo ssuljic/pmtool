@@ -11,6 +11,7 @@ class TasksController < BaseController
 			else
 				@tasks = @current_user.tasks.includes(:uploads)
 			end
+			
 			respond_to do |format|
 				format.html
 				format.json {

@@ -17,7 +17,7 @@ $(function() {
 		});
 
 	  $(document).ready(function(){
-			$("#tasks_accordion #comments_list").toggle();
+			$("#tasks_accordion #comments_list").hide();
 		  	$("#tasks_accordion #toggle_comments").click(function(){
 		    $("#tasks_accordion #comments_list").toggle(1000);
 		  });

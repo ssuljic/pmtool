@@ -18,6 +18,7 @@ Pmtool::Application.routes.draw do
 
   resources :tasks do
     resources :uploads
+    resources :comments , :only => [:create]
   end
 
 end

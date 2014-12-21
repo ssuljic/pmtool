@@ -11,13 +11,13 @@
 				<% @tasks.each do |task| %>
 				  <h3><%= task.name %></h3>
 				  <div>
-				  <button class="btn btn-default" style="float: right; margin-left:1%;">
-				   <span class="glyphicon glyphicon-pencil" id="icon"></span>
-				  	<%= link_to " Edit task", edit_task_path(activity_id: params[:activity_id], project_id: params[:project_id], id: task.id) %>
+				  	<button class="btn btn-default" style="float: right; margin-left:1%;">
+					   	<span class="glyphicon glyphicon-pencil" id="icon"></span>
+					  	<%= link_to " Edit task", edit_task_path(activity_id: params[:activity_id], project_id: params[:project_id], id: task.id) %>
 				  	</button>
-				  	 <button class="btn btn-default" style="float: right;">
-				   <span class="glyphicon glyphicon-paperclip" id="icon"></span>
-				  	<%= link_to " Add resources", edit_task_path(activity_id: params[:activity_id], project_id: params[:project_id], id: task.id) %>
+					  	<button class="btn btn-default" style="float: right;">
+					   	<span class="glyphicon glyphicon-paperclip" id="icon"></span>
+					  	<%= link_to " Add resources", new_task_upload_path(task) %>
 				  	</button>
 				  <span style="font-weight: bold;">Assigned to: <%= task.user.username %></span><br/>
 				  	<span style="font-weight: bold;">Description: </span><%= task.description %><br/>
@@ -31,13 +31,10 @@
 				  	<% task.uploads.each do |upload| %>
 				  		<%= link_to upload.filename, task_upload_path(task, upload) %><br>
 				  	<% end %>
-				  	<%= link_to 'Upload resources', new_task_upload_path(task), :class => 'btn btn-default' %>
-
-
 
 				  	<div>
 					  	<span class='icon'> | </span>
-					  	<button id='toggle_comments'><span class='glyphicon glyphicon-comment'></span> Show comments</button>
+					  	<button id='toggle_comments'><span class='glyphicon glyphicon-comment'></span> Comments (<%= task.comments.count %>)</button>
 					  	<br/><br/>
 				  	</div>
 
@@ -50,12 +47,16 @@
 				  		<% end %>
 				  	</div>
 
-				  	<div id='add_comment'>
+				  	<%= form_tag (tasks_path()), class: 'add_comment_form' do %>
 				  		<div class="form-group">
-    						<input type="text" class="form-control" id="name" placeholder="Write comment..." name="comment"></div>
-    						<span class='icon'> | </span>
-					  		<button><span class='glyphicon glyphicon-plus'></span> Add your comment</button>
-				  	</div>
+						    <label for="content">Comment</label>
+						    <input type="text" class="form-control" id="content" placeholder="Username" name="content">
+						  </div>
+    					<span class='icon'> | </span>
+					  	<button type="submit"><span class='glyphicon glyphicon-plus'></span> 
+					  	<%= link_to ' Add your comment', task_comments_path(activity_id: params[:activity_id], task_id: task.id, user_id: @current_user.id), :method => :create %><br>
+					  	</button>
+				  	<% end %>
 
 
 				  </div>
