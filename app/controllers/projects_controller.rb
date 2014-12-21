@@ -59,7 +59,7 @@ class ProjectsController < BaseController
  			format.json {
  				if @project.save
  					@project.manager = @current_user
-		      render json: { :message => 'Successful'} 
+		      render json: { :message => 'Successful', project: @project } 
 		    else
 		      render json: { :message => 'Unsuccessful'}, :status => :unauthorized
 		    end	

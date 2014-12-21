@@ -45,7 +45,7 @@ class ActivitiesController < BaseController
  			}
  			format.json {
  				if @activity.save
-		      render json: { :message => 'Successful'} 
+		      render json: { :message => 'Successful', activity: @activity } 
 		    else
 		      render json: { :message => 'Unsuccessful'}, :status => :unauthorized
 		    end	

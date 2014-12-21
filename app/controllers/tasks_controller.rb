@@ -55,7 +55,7 @@ class TasksController < BaseController
  			}
  			format.json {
  				if @task.save
-		      render json: { :message => 'Successful'} 
+		      render json: { :message => 'Successful', task: @task } 
 		    else
 		      render json: { :message => 'Unsuccessful'}, :status => :unauthorized
 		    end	
