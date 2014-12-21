@@ -11,9 +11,12 @@ class CommentsController < BaseController
 
 	private
 	def comment_params
-		params.permit(:user_id,
+		content = 'content'+params[:comment][:task_id]
+		params[:comment][:content]=params[:comment][content]
+		params[:activity_id]=params[:comment][:activity_id]
+		params.require(:comment).permit(:content,
+			:user_id,
 			:task_id,
-			:content
 		)
 	end
 
