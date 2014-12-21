@@ -13,7 +13,7 @@
 				  <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-tags" id="icon"> </span> <%= link_to " Edit members", project_members_path(@project) %></button>
 				  <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-file" id="icon"></span> Create report</button>
 			  <% end %>
-			  	   <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-time" id="icon"></span> Schedule meeting</button>
+			  	   <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-time" id="icon"></span> <%= link_to " Schedule meting", new_project_meeting_path(@project) %></button>
 			  <h2><%= @project.name %></h2>
 			  <p> Description: <%= @project.short_description %></p>
 			</div>
