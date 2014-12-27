@@ -17,12 +17,12 @@
 							<%end %>
 						<% end %>
 					<% else %>
-						<button class="btn btn-default"><%= link_to "Attend meeting", new_project_meeting_user_period_path(:meeting_id => @meeting.id) %></button>
+						<button class="btn btn-default"><span class="glyphicon glyphicon-share" id="icon"></span><%= link_to " Attend meeting", new_project_meeting_user_period_path(:meeting_id => @meeting.id) %></button>
 						<% @meeting.periods.each do |p| %>
-							<h6>From <%= p.from %> to <%= p.to %><span class="gray"> <%= p.user_periods.count %> person(s)</span></h6>
+							<h6>From <%= p.from %> to <%= p.to %><span class="gray"> <%= p.user_periods.count %> person(s)</span>
 							<% if @current_user.id==@meeting.user.id %>
-							<button class="btn btn-default"><%= link_to "Pick and finish scheduling", project_meeting_finish_path(:period => p.id, :meeting_id => @meeting.id) %></button>
-							<% end %>
+							<button class="simple_button"><span class="glyphicon glyphicon-ok" id="icon"></span><%= link_to " Pick and finish scheduling", project_meeting_finish_path(:period => p.id, :meeting_id => @meeting.id) %></button>
+							<% end %></h6>
 							<ul>
 								<% p.user_periods.each do |up| %>
 								<li><%= up.user.username %></li>

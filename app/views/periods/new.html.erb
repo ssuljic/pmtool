@@ -1,14 +1,14 @@
 <%= render 'shared/header' %>
 
-<div class="container" id="new_period_form">
+<div class="container">
 	<div class="row">
 		<div class="col-md-3">
 			<%= render 'shared/sidebar' %>
 		</div>
-		<div class="col-md-9">
+		<div class="col-md-9" id="new_period_form">
 			<div class="col-md-6">
 				<div class="container-fluid">
-				  <button class='btn btn-default'><%= link_to "Finish", project_meetings_path %></button>
+				  <button class='btn btn-default'><span class="glyphicon glyphicon-ok" id="icon"></span><%= link_to " Finish", project_meetings_path %></button>
 				  <span class='gray'> or schedule one more period for meeting...</span>
 					<%= form_for @period, :html => {:class => 'form'}, :url => project_meeting_periods_path do |f| %>
 

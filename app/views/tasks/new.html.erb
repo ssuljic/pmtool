@@ -36,7 +36,7 @@
 
 						<div class="form-group">
 							<%= f.label :user_id %>
-							<%= select("task", "user_id", @users.all.collect {|p| [ p.username, p.id ] }, { include_blank: true }) %>
+							<%= select("task", "user_id", @users.all.collect {|p| [ p.username, p.id ] }, { include_blank: true }, class: "form-control") %>
 						</div>
 
 						<%= f.hidden_field :activity_id, :value => params[:activity_id] %>

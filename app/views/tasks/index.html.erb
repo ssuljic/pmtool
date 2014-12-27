@@ -31,7 +31,7 @@
 				  	<span style="font-weight: bold;">Resources: </span><br>
 				  	<% task.uploads.each do |upload| %>
 				  		<%= link_to upload.filename, task_upload_path(task, upload) %><br>
-				  	<% end %>
+				  	<% end %><br>
 
 
 				  	<script>
@@ -46,7 +46,7 @@
 
 						<div>
 					  	<span class='icon'> | </span>
-					  	<button id='toggle_comments<%= task.id %>'><span class='glyphicon glyphicon-comment'></span> Comments (<%= task.comments.count %>)</button>
+					  	<button class="accordion_button" id='toggle_comments<%= task.id %>'><span class='glyphicon glyphicon-comment'></span> Comments (<%= task.comments.count %>)</button>
 					  	<br/><br/>
 				  	</div>
 
@@ -55,11 +55,11 @@
 				  	</div>
 
 				  	<%= form_tag (task_comments_path(task.id)), remote: true, class: 'add_comment_form' do %>
-				  		<input type="text" class="form-control" id="content" placeholder="Type here..." name="comment[content<%= task.id %>]">
+				  		<input type="text" class="form-control" id="content" placeholder="Type your comment here..." name="comment[content<%= task.id %>]">
 				  		<input type="hidden" class="form-control" id="user_id" value=<%= @current_user.id %>  name="comment[user_id]">
 				  		<input type="hidden" class="form-control" id="activity_id" value=<%= params[:activity_id] %>  name="comment[activity_id]">
-				  		<input type="hidden" class="form-control" id="task_id" value=<%= task.id %>  name="comment[task_id]">
-				  		 <button type="submit"><span class='icon'> | </span>
+				  		<input type="hidden" class="form-control" id="task_id" value=<%= task.id %>  name="comment[task_id]"><br>
+				  		 <span class='icon'> | </span><button type="submit" class="accordion_button">
 				  		 <span class='glyphicon glyphicon-plus'></span>Add comment</button>
 				  	<% end %>
 

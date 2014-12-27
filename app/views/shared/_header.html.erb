@@ -2,6 +2,6 @@
   <%= image_tag("pt.png", class: "img-thumbnail", width: "150px") %>
   <h1>
   	&nbsp;Welcome, <%= @current_user.name %>
-  	<small><%= link_to 'Log Out', logout_path %></small>
+  	<small class='logout'><span class="glyphicon glyphicon-log-out logout" id="icon"></span><%= link_to ' Log Out', logout_path %></small>
   </h1>
 </div>

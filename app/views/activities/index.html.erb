@@ -5,14 +5,14 @@
 		<div class="col-md-3">
 			<%= render 'shared/sidebar' %>
 		</div>
-		<div class="col-md-9">
-			<%= link_to 'Create New Activity', new_project_activity_path, :class => "btn btn-success" %><br><br><br>
+		<div class="col-md-9" id="activity_index">
+			<button class="btn btn-default"><span class="glyphicon glyphicon-plus" id="icon"></span><%= link_to 'Create New Activity', new_project_activity_path%></button><br>
 			<div class="horizontal-form">
 				<% @project.activities.each do |activity| %>
 					<div class="form-group">
 						<label style="width:50%;"><%= activity.name %></label>
-						<%= link_to 'Edit', edit_project_activity_path(@project, activity), class: "btn btn-default" %>
-						<%= link_to 'Delete', project_activity_path(@project, activity), data: { confirm: 'Are you sure you want to delete the activity?' }, :method => :delete, class: "btn btn-default" %>
+						<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil" id="icon"> </span><%= link_to ' Edit', edit_project_activity_path(@project, activity)%></button>
+						<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash" id="icon"> </span><%= link_to ' Delete', project_activity_path(@project, activity), data: { confirm: 'Are you sure you want to delete the activity?' }, :method => :delete %></button>
 					</div>
 				<% end %>
 			</div>

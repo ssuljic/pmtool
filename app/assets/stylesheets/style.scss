@@ -28,14 +28,14 @@ body {
  	font-size: 13px;
  }
 
-.sign_up_form, #new_project_form, #show_project {
+.sign_up_form, #new_project_form, #show_project, #tasks_index {
 	margin-bottom: 8%;
 }
-.login_form label, span, .sign_up_form label, span, #new_project_form label, span, #show_members label {
+.login_form label, span, .sign_up_form label, span, #new_project_form label, span, #show_members label, #new_task_form label, #activity_index label, #edit_activity label, #new_period_form label {
 	color:#22CB83;
 }
 
-.login_form input, .sign_up_form input, #new_project_form .form-control {
+.login_form input, .sign_up_form input, #new_project_form .form-control, #new_task_form .form-control, #new_task_form select, #edit_activity .form-control, #new_period_form .form-control {
 	border-radius: 0px;
 	border-style: solid;
 	border-width: 3px;
@@ -47,17 +47,18 @@ body {
 	border-color: #22CB83;
 }
 
-.login_form button, .sign_up_form button, #new_project_form .btn, #show_project button, #show_members .btn, #tasks_index .btn {
+.login_form button, .sign_up_form button, #new_project_form .btn, #show_project button, #show_members .btn, #tasks_index .btn, #new_task_form .btn, #activity_index .btn, #edit_activity .btn, #meetings_index .btn, #new_period_form .btn {
 	border-radius: 0px;
 	border-style: solid;
 	border-width: 3px;
 	border-color: #0494D2;
 	color: #0494D2;
 	font-weight: bold;
-
+	margin-top:1%;
+	margin-bottom: 1%;
 }
 
-.login_form button:hover, .sign_up_form button:hover, #new_project_form .btn:hover, #show_project button:hover, #show_members .btn:hover, #tasks_index .btn:hover {
+.login_form button:hover, .sign_up_form button:hover, #new_project_form .btn:hover, #show_project button:hover, #show_members .btn:hover, #tasks_index .btn:hover, #new_task_form .btn:hover, #activity_index .btn:hover, #edit_activity .btn:hover, #meetings_index .btn:hover, #new_period_form .btn:hover {
 	border-radius: 0px;
 	border-style: solid;
 	border-width: 3px;
@@ -67,12 +68,12 @@ body {
 	background: #FFFFFF;
 }
 
-.login_form a, a:hover, .sign_up_form a, a:hover, #new_project_form a, a:hover, #show_project a, #show_members a{
+.login_form a, a:hover, .sign_up_form a, a:hover, #new_project_form a, a:hover, #show_project a, #show_members a, #tasks_index a, #meetings_index a, #new_period_form a{
 	color:#0494D2;
 }
 
  
-#show_project a:hover, #show_members a:hover{
+#show_project a:hover, #show_members a:hover, #tasks_index a:hover, #meetings_index a:hover, #new_period_form a:hover  {
 	color: #22CB83;
 	text-decoration: none;
 }
@@ -125,6 +126,41 @@ body {
 #accordion .btn .btn-default a {
 	color: #22CB83;
 	border-radius: 0px;
+}
+
+.ui-widget-content {
+	color: #0494D2;
+}
+
+.accordion_button {
+	border-style: solid;
+	border-color: #0494D2;
+	background: transparent;
+}
+
+.simple_button {
+	display: inline-block;
+	border-style: solid;
+	border-color: #0494D2;
+	background: transparent;
+}
+
+#meetings_index {
+	color: #0494D2;
+}
+
+#show_meeting li {
+	color: #22CB83;
+}
+
+#show_meeting p {
+	font-size: 10px;
+}
+
+.logout a, .logout a:hover, .logout .glyphicon {
+	font-size: 16px;
+	color: #0494D2;
+	text-decoration: none;
 }
 
 
