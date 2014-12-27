@@ -1,11 +1,15 @@
 class CommentsController < BaseController
 	before_filter :get_user_projects
 	def create
-		@comm = Comment.new(comment_params)
-		if @comm.save
-			redirect_to tasks_path(project_id: Activity.find(params[:activity_id]).project.id, activity_id: params[:activity_id])
-		else
-			redirect_to tasks_path(project_id: Activity.find(params[:activity_id]).project.id, activity_id: params[:activity_id])
+		@comment = Comment.new(comment_params)
+		respond_to do |format|
+			if @comment.save
+				format.html { redirect_to tasks_path(project_id: Activity.find(params[:activity_id]).project.id, activity_id: params[:activity_id]) }
+				format.js {}
+			else
+				format.html { redirect_to tasks_path(project_id: Activity.find(params[:activity_id]).project.id, activity_id: params[:activity_id]) }
+				format.js {}
+			end
 		end
 	end
 

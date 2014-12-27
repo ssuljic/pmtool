@@ -8,18 +8,32 @@
 		<div class="col-md-9">
 			<div class="col-md-6">
 				<div class="container-fluid">
-					<%= form_for @meeting, :html => {:class => 'form'} do |f| %>
+					<%= form_for @meeting, :url => new_project_meeting_path do |f| %>
 						<div class="form-group">
 							<%= f.label :description %>
 							<%= f.text_field :description, class: "form-control" %>
 						</div>
 
 						<div class="form-group">
-							<span class='glyphicon glyphicon-location'>&nbsp;</span><%= f.label :location %>
+							<span class='glyphicon glyphicon-map-marker'>&nbsp;</span><%= f.label :location %>
 							<%= f.text_field :location, class: "form-control" %>
 						</div>
 
-						<%= f.submit "Create task", class: "btn btn-default" %>
+						<%= form_for @period, :html => {:class => 'form-inline'}, :url => new_project_meeting_path do |subf| %>
+
+							<div class="form-group">
+								<%= subf.label :from %>
+								<%= subf.text_field :from, class: "datetimepicker_from form-control" %>
+							</div>
+
+							<div class="form-group">
+								<%= subf.label :to %>
+								<%= subf.text_field :to, class: "datetimepicker_to form-control" %>
+							</div>
+
+						<% end %>
+
+						<%= f.submit "Create meeting", class: "btn btn-default" %>
 					<% end %>
 				</div>
 			</div>

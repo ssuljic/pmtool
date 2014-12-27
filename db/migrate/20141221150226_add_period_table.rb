@@ -1,9 +1,9 @@
 class AddPeriodTable < ActiveRecord::Migration
   def change
-  	create_table :period do |t|
+  	create_table :periods do |t|
   		t.references :meeting, :null => false
-  		t.date :from
-  		t.date :to
+  		t.datetime :from
+  		t.datetime :to
 
   		t.timestamps
   	end

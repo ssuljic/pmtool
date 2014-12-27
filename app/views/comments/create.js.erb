@@ -1,0 +1,5 @@
+console.log('test');
+$('#content').val('');
+$("<%= escape_javascript(render @comment) %>").appendTo("#comments_list<%= @comment.task_id%>", 1000);
+$('#toggle_comments<%= @comment.task_id %>').html("<span class='glyphicon glyphicon-comment'></span> Comments (<%= Task.find(@comment.task_id).comments.count %>)"); 
+console.log('test');

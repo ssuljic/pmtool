@@ -6,6 +6,7 @@
 			<%= render 'shared/sidebar' %>
 		</div>
 		<div class="col-md-9">
+
 			<button class="btn btn-default"><span class="glyphicon glyphicon-plus" id="icon"></span><%= link_to ' Add new task', new_task_path(activity_id: params[:activity_id], project_id: params[:project_id]) %></button>
 			<div id="tasks_accordion">
 				<% @tasks.each do |task| %>
@@ -32,22 +33,28 @@
 				  		<%= link_to upload.filename, task_upload_path(task, upload) %><br>
 				  	<% end %>
 
-				  	<div>
+
+				  	<script>
+							$(document).ready(function(){
+							$("#tasks_accordion #comments_list<%= task.id %>").hide();
+						  	$("#tasks_accordion #toggle_comments<%= task.id %>").click(function(){
+							    $("#tasks_accordion #comments_list<%= task.id %>").toggle(1000);
+							    $("#tasks_accordion #comments_list<%= task.id %>").css("display", "block");
+						  });
+					  });
+						</script>
+
+						<div>
 					  	<span class='icon'> | </span>
-					  	<button id='toggle_comments'><span class='glyphicon glyphicon-comment'></span> Comments (<%= task.comments.count %>)</button>
+					  	<button id='toggle_comments<%= task.id %>'><span class='glyphicon glyphicon-comment'></span> Comments (<%= task.comments.count %>)</button>
 					  	<br/><br/>
 				  	</div>
 
-				  	<div id='comments_list'>
-				  		<% task.comments.each do |comm| %>
-				  			<div class="comment">
-				  				<span><%= comm.content %><br/>
-				  				<span class="gray">by <%= comm.user.username %> at <%= comm.created_at.to_formatted_s(:long) %></span>
-				  			</div>
-				  		<% end %>
+				  	<div id='comments_list<%= task.id %>' style="display: none">
+				  		<%= render task.comments %>
 				  	</div>
 
-				  	<%= form_tag (task_comments_path(task.id)), class: 'add_comment_form' do %>
+				  	<%= form_tag (task_comments_path(task.id)), remote: true, class: 'add_comment_form' do %>
 				  		<input type="text" class="form-control" id="content" placeholder="Type here..." name="comment[content<%= task.id %>]">
 				  		<input type="hidden" class="form-control" id="user_id" value=<%= @current_user.id %>  name="comment[user_id]">
 				  		<input type="hidden" class="form-control" id="activity_id" value=<%= params[:activity_id] %>  name="comment[activity_id]">

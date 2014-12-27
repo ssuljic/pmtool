@@ -1,6 +1,6 @@
 class AddMeetingTable < ActiveRecord::Migration
   def change
-  	create_table :meeting do |t|
+  	create_table :meetings do |t|
   		t.references :project, :null => false
   		# meeting creator
   		t.references :user, :null => false
