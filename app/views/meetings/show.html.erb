@@ -6,6 +6,32 @@
 			<%= render 'shared/sidebar' %>
 		</div>
 		<div class="col-md-9">
+			<div class="container" id="show_meeting">
+				<h4><%= @meeting.description %><span class="gray"> at </span><%= @meeting.location %>
+					<% if @meeting.scheduling_finished %>
+						<span class="gray"> (finished)</span>
+						<h5> Scheduled period: </h5>
+						<% @meeting.periods.each do |p| %>
+							<% if p.picked %>
+								<h6>From <%= p.from %> to <%= p.to %></h6>
+							<%end %>
+						<% end %>
+					<% else %>
+						<button class="btn btn-default"><%= link_to "Attend meeting", new_project_meeting_user_period_path(:meeting_id => @meeting.id) %></button>
+						<% @meeting.periods.each do |p| %>
+							<h6>From <%= p.from %> to <%= p.to %><span class="gray"> <%= p.user_periods.count %> person(s)</span></h6>
+							<% if @current_user.id==@meeting.user.id %>
+							<button class="btn btn-default"><%= link_to "Pick and finish scheduling", project_meeting_finish_path(:period => p.id, :meeting_id => @meeting.id) %></button>
+							<% end %>
+							<ul>
+								<% p.user_periods.each do |up| %>
+								<li><%= up.user.username %></li>
+								<% end %>
+							</ul>
+						<% end %>
+					<% end %>
+				</h4>
+			</div>
 		</div>
 	</div>
 </div>

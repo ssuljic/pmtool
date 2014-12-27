@@ -15,6 +15,7 @@ Pmtool::Application.routes.draw do
     resources :members, :only => [:index, :create, :destroy]
     resources :activities
     resources :meetings, :only => [:index, :show, :create, :new] do
+      get 'finish'
       resources :periods, :only => [:create, :new]
       resources :user_periods, :only => [:create, :new]
     end

@@ -1,12 +1,26 @@
 class MeetingsController < BaseController
 	before_filter :get_user_projects
 
+	def show
+		@meeting = Meeting.find(params[:id])
+	end
+
 	def index
 		@meetings = Project.find(params[:project_id]).meetings
 	end
 
 	def new 
 		@meeting = Meeting.new
+	end
+
+	def finish
+		@meeting = Meeting.find(params[:meeting_id])
+		@meeting.scheduling_finished = TRUE
+		@meeting.save
+		@p=Period.find(params[:period])
+		@p.picked = TRUE
+		@p.save
+		redirect_to project_meetings_path
 	end
 
 	def create
