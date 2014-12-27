@@ -17,12 +17,12 @@ $(function() {
 		});
 
 	  $('.datetimepicker_from').datetimepicker({
-  		format:'y-m-d H:i',
+  		format:'Y-m-d H:i',
   		lang:'en'
 	  });
 
 	   $('.datetimepicker_to').datetimepicker({
-  		format:'y-m-d H:i',
+  		format:'Y-m-d H:i',
   		lang:'en'
 	  });
 

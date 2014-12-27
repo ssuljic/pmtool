@@ -1,0 +1,26 @@
+<%= render 'shared/header' %>
+
+<div class="container" id="meetings_index">
+	<div class="row">
+		<div class="col-md-3">
+			<%= render 'shared/sidebar' %>
+		</div>
+		<div class="col-md-9">
+			<% @meetings.each do |m| %>
+				<h4><%= m.description %><span class="gray"> at </span><%= m.location %>
+					<% if m.scheduling_finished %>
+					<span class="gray"> (finished)</span>
+					<% else %>
+						<button class="btn btn-default">Attend meeting</button>
+						<% if @current_user.id==m.user.id %>
+							<button class="btn btn-default">Finish scheduling</button>
+						<% end %>
+					<% m.periods.each do |p| %>
+						<h6>From <%= p.from %> to <%= p.to %></h6>
+					<% end %>
+					<% end %>
+				</h4>
+			<% end %>
+		</div>
+	</div>
+</div>

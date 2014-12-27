@@ -1,0 +1,31 @@
+<%= render 'shared/header' %>
+
+<div class="container" id="new_period_form">
+	<div class="row">
+		<div class="col-md-3">
+			<%= render 'shared/sidebar' %>
+		</div>
+		<div class="col-md-9">
+			<div class="col-md-6">
+				<div class="container-fluid">
+				  <button class='btn btn-default'><%= link_to "Finish", project_meetings_path %></button>
+				  <span class='gray'> or schedule one more period for meeting...</span>
+					<%= form_for @period, :html => {:class => 'form'}, :url => project_meeting_periods_path do |f| %>
+
+							<div class="form-group">
+								<%= f.label :from %>
+								<%= f.text_field :from, class: "datetimepicker_from form-control" %>
+							</div>
+
+							<div class="form-group">
+								<%= f.label :to %>
+								<%= f.text_field :to, class: "datetimepicker_to form-control" %>
+							</div>
+
+						<%= f.submit "Next", class: "btn btn-default" %>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
