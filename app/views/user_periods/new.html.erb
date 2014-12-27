@@ -1,0 +1,19 @@
+<%= render 'shared/header' %>
+
+<div class="container" id="meetings_index">
+	<div class="row">
+		<div class="col-md-3">
+			<%= render 'shared/sidebar' %>
+		</div>
+		<div class="col-md-9">
+			<%= form_tag (project_meeting_user_periods_path()), class: 'new_user_period_form' do %>
+				<h4><%= @meeting.description %><span class="gray"> at </span><%= @meeting.location %></h4>
+				<% @meeting.periods.each do |p| %>
+						<input type="checkbox" name="user_period[]" value="<%= p.id %>"> From <%= p.from %> to <%= p.to %><span class="gray"> <%= p.user_periods.count %> person(s)</span><br>
+				<% end %>
+
+				<button type="submit" class="btn btn-default">Attend</button>
+			<% end %>
+		</div>
+	</div>
+</div>

@@ -25,5 +25,4 @@ $(function() {
   		format:'Y-m-d H:i',
   		lang:'en'
 	  });
-
 });

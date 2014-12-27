@@ -6,17 +6,18 @@
 			<%= render 'shared/sidebar' %>
 		</div>
 		<div class="col-md-9">
+			<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-time" id="icon"></span> <%= link_to " Add new meeting", new_project_meeting_path %></button>
 			<% @meetings.each do |m| %>
 				<h4><%= m.description %><span class="gray"> at </span><%= m.location %>
 					<% if m.scheduling_finished %>
 					<span class="gray"> (finished)</span>
 					<% else %>
-						<button class="btn btn-default">Attend meeting</button>
+						<button class="btn btn-default"><%= link_to "Attend meeting", new_project_meeting_user_period_path(:meeting_id => m.id) %></button>
 						<% if @current_user.id==m.user.id %>
-							<button class="btn btn-default">Finish scheduling</button>
+							<button class="btn btn-default"><%= link_to "Show", project_meeting_path(:id => m.id) %></button>
 						<% end %>
 					<% m.periods.each do |p| %>
-						<h6>From <%= p.from %> to <%= p.to %></h6>
+						<h6>From <%= p.from %> to <%= p.to %><span class="gray" id="people_per_period"> <%= p.user_periods.count %> person(s)</span></h6>
 					<% end %>
 					<% end %>
 				</h4>
