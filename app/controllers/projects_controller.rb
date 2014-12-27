@@ -70,7 +70,6 @@ class ProjectsController < BaseController
 
 	def project_params
 		params[:project][:finished] = false
-		raise
 		params.require(:project).permit(:name, 
 			:short_description, 
 			:long_description, 
