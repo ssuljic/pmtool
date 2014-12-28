@@ -1,3 +1,4 @@
+require 'base64'
 class UploadsController < BaseController
 	before_filter :get_user_projects
 
@@ -11,11 +12,19 @@ class UploadsController < BaseController
 	end
 
 	def create
-		@upload = Upload.new
-		@upload.file_data = params[:upload][:file_data]
-		@upload.task = Task.find(params[:task_id])
-		@upload.save
-		redirect_to tasks_path
+		respond_to do |format|
+			format.html {
+				@upload = Upload.new
+				@upload.file_data = params[:upload][:file_data]
+				@upload.task = Task.find(params[:task_id])
+				@upload.save_binary
+				@upload.save
+				redirect_to :back
+			}
+			format.json {
+				render json: {message: 'OK'}	
+			}
+		end
 	end
 
 	def show

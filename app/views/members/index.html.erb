@@ -7,16 +7,21 @@
 		</div>
 		<script>
 		$(document).ready(function() {
+			var limit = <%= @members_limit %>;
 			 $("#memberTags").tagit({
 			 		availableTags: <%= raw @avail_usernames %>,
 			 		autocomplete: {delay: 0, minLength: 2},
-			 		tagLimit:5,
+			 		tagLimit: limit,
 			 		placeholderText   : "New members...",
 			 		beforeTagAdded: function(event, ui) {
-			        if($.inArray(ui.tagLabel, <%= raw @avail_usernames %>)<0) return false;
-			        }
+			      if($.inArray(ui.tagLabel, <%= raw @avail_usernames %>)<0) return false;
+			    }
 			 });
-
+			 $(document).on('change', '[name=tags]', function() {
+			 	if($(this).val().split(',').length == limit) {
+			 		$('#tagit-list').append('<div class="alert alert-warning" role="alert">Maximum number of members added!</div>');
+			 	}
+			 });
 		});
 		</script>
 		<div class="col-md-9">
@@ -31,12 +36,17 @@
 					</div>
 				<% end %>
 			<div class="row">
-				<div class="col-md-10">
-					<ul id="memberTags"> </ul>
-				</div>
-				<div class="col-md-2">
-					<button type="submit" class="btn btn-default" id="add"><span class="glyphicon glyphicon-plus" id="icon>"></span> Add</button>
-				</div>
+				<div class="col-md-10" id="tagit-list">
+				<% if @members_limit != 0 %>
+						<ul id="memberTags"> </ul>
+						</div>
+						<div class="col-md-2">
+							<button type="submit" class="btn btn-default" id="add"><span class="glyphicon glyphicon-plus" id="icon>"></span> Add</button>
+						</div>
+				<% else %>
+					<div class="alert alert-warning" role="alert">Maximum number of members added!</div>
+					</div>
+				<% end %>
 			</div>
 			</form>
 		</div>

@@ -54,7 +54,15 @@ class ActivitiesController < BaseController
 	end
 
 	def update
-		Activity.find(params[:id]).update(activity_params)
+		@activity = Activity.find(params[:id])
+		if params[:activity][:finished] == "1"
+			statuses = @activity.tasks.map { |t| t.status }.uniq
+			if statuses.count != 1 && statuses[0] != 100
+				flash[:error] = 'All tasks are not finished'
+				redirect_to edit_project_activity_path(params[:project_id], params[:id]) and return
+			end
+		end
+		@activity.update(activity_params)
 		redirect_to project_activities_path(params[:project_id])
 	end
 

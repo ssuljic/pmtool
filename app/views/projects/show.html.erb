@@ -12,15 +12,19 @@
 				  <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-list" id="icon"></span> <%= link_to 'Edit activities', project_activities_path(@project) %></button>
 				  <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-tags" id="icon"> </span> <%= link_to " Edit members", project_members_path(@project) %></button>
 				  <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-file" id="icon"></span> Create report</button>
+				  <br><br>
 			  <% end %>
-			  	   <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-time" id="icon"></span> <%= link_to " Manage meetings", project_meetings_path(@project) %></button>
+			  	<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-time" id="icon"></span> <%= link_to " Manage meetings", project_meetings_path(@project) %></button>
+			  	<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-time" id="icon"></span> <%= link_to " Edit commitment", edit_project_user_project_path(project_id: @project.id, id: UserProject.where(user_id: @current_user, project_id: @project.id).first.id) %></button>
 			  <h2><%= @project.name %></h2>
 			  <p> Description: <%= @project.short_description %></p>
 			</div>
 			<h3>Project activities</h3>
 			<div id="accordion">
 				<% @project.activities.each do |activity| %>
-				  <h3><%= activity.name %></h3>
+				  <h3><span <% if activity.finished %> style="text-decoration: line-through" <% end %>>
+				  <%= activity.name %></span>
+				  </h3>
 				  <div>
 				   <% if @current_user.is_manager?(@project) %>
 					   <button class="btn btn-default" style="float: right;">
@@ -33,8 +37,8 @@
 				  <% else %>
 				  	<ul>
 				  		<% activity.tasks.each do |task| %>
-				  			<li><%= task.name %> 
-				  			<span class="gray"><%= task.user.name + " " + task.user.surname %></span>
+				  			<li><span <% if task.status == 100 %> style="text-decoration: line-through" <% end %>><%= task.name %></span>
+				  			<span class="gray"><%= "- " + task.status.to_s + "% " + task.user.name + " " + task.user.surname %></span>
 				  			</li>
 				  		<% end %>
 				  	</ul>

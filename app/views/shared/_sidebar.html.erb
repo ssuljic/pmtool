@@ -3,7 +3,7 @@
 		<span class="glyphicon glyphicon-home" id="icon">&nbsp;</span><%= link_to 'Home', projects_path %>
 	</li>
 	<li class="list-group-item">
-		<span class="glyphicon glyphicon-user" id="icon">&nbsp;</span><%= link_to 'My profile', profile_path(@current_user) %>
+		<span class="glyphicon glyphicon-user" id="icon">&nbsp;</span><%= link_to 'Update profile', edit_profile_path(@current_user) %>
 	</li>
 </ul>
 <ul class="list-group" id="sidebar">

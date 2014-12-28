@@ -22,6 +22,7 @@
 							    <%= task.status %>%
 							  </div>
 							</div>
+							<%= link_to 'Edit task', edit_task_path(activity_id: task.activity.id, id: task.id) %>
 					  </div>
 					</div>
 				<% end %>

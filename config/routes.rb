@@ -19,6 +19,7 @@ Pmtool::Application.routes.draw do
       resources :periods, :only => [:create, :new]
       resources :user_periods, :only => [:create, :new]
     end
+    resources :user_projects, :only => [:edit, :update]
   end
 
   resources :tasks do

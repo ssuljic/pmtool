@@ -1,0 +1,26 @@
+<%= render 'shared/header' %>
+
+<div class="container" id="edit_task_form">
+	<div class="row">
+		<div class="col-md-3">
+			<%= render 'shared/sidebar' %>
+		</div>
+		<div class="col-md-9">
+			<% if flash[:error] %>
+				<div class="alert alert-danger" role="alert"><%= flash[:error] %></div>
+			<% end %>
+			<div class="col-md-6">
+				<div class="container-fluid">
+					<%= form_for @user_project, :url => project_user_project_path(params[:project_id], @user_project), :html => {:class => 'form', :method => 'put'} do |f| %>
+						<div class="form-group">
+							<%= f.label :name %>
+							<%= f.number_field :number_of_hours, class: "form-control", min: 0 %>
+						</div>
+
+						<%= f.submit "Edit commitment", class: "btn btn-default" %>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

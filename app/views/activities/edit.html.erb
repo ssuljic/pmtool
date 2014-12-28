@@ -6,6 +6,9 @@
 			<%= render 'shared/sidebar' %>
 		</div>
 		<div class="col-md-9" id="edit_activity">
+			<% if flash[:error] %>
+				<div class="alert alert-danger" role="alert"><%= flash[:error] %></div>
+			<% end %>
 			<div class="col-md-6">
 				<div class="container-fluid">
 					<%= form_for @activity, :url => project_activity_path, :html => {:method => :put, :class => 'form'} do |f| %>

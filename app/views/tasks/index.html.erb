@@ -7,7 +7,9 @@
 		</div>
 		<div class="col-md-9">
 
-			<button class="btn btn-default"><span class="glyphicon glyphicon-plus" id="icon"></span><%= link_to ' Add new task', new_task_path(activity_id: params[:activity_id], project_id: params[:project_id]) %></button>
+			<% unless @activity.finished %>
+				<button class="btn btn-default"><span class="glyphicon glyphicon-plus" id="icon"></span><%= link_to ' Add new task', new_task_path(activity_id: params[:activity_id], project_id: params[:project_id]) %></button>
+			<% end %>
 			<div id="tasks_accordion">
 				<% @tasks.each do |task| %>
 				  <h3><%= task.name %></h3>

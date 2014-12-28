@@ -1,10 +1,10 @@
 class TasksController < BaseController
 	before_filter :get_user_projects
 	def index
-		# begin
+		begin
 			if params[:activity_id] && params[:project_id]
-				activity = @current_user.projects.find(params[:project_id]).activities.find(params[:activity_id])
-				@tasks = activity.tasks.includes(:uploads)
+				@activity = @current_user.projects.find(params[:project_id]).activities.find(params[:activity_id])
+				@tasks = @activity.tasks.includes(:uploads)
 			elsif params[:project_id]
 				project = @current_user.projects.find(params[:project_id])
 				@tasks = project.tasks.includes(:uploads)
@@ -18,9 +18,9 @@ class TasksController < BaseController
 					render json: { tasks: @tasks }
 				}
 			end
-		# rescue
-		# 	render json: { message: 'Record not found!' }, :status => :bad_request
-		# end
+		rescue
+			render json: { message: 'Record not found!' }, :status => :bad_request
+		end
 	end
 
 	def show
@@ -41,13 +41,22 @@ class TasksController < BaseController
 
 	def new
 		@task = Task.new
-		@users = Activity.find(params[:activity_id]).project.users
+		@activity = Activity.find(params[:activity_id])
+		@users = @activity.project.users
 	end
 
 	def create
+		@project = Activity.find(task_params[:activity_id]).project
 		@task = Task.new(task_params)
 		respond_to do |format|
  			format.html {
+
+ 			user_id = params[:task][:user_id] || @current_user.id
+
+			if params[:task][:duration].to_i > User.find(user_id).get_available_hours(@project)
+				flash[:error] = "Selected user doesn't have enough available hours"
+				redirect_to new_task_path(activity_id: task_params[:activity_id]) and return
+			end
  			if @task.save
 		    redirect_to tasks_path(project_id: Activity.find(task_params[:activity_id]).project.id, activity_id: task_params[:activity_id])
 		  else
@@ -66,12 +75,25 @@ class TasksController < BaseController
 
 	def edit
 		@task = Task.find(params[:id])
-		@users = Activity.find(params[:activity_id]).project.users
+		@activity = Activity.find(params[:activity_id])
+		@users = @activity.project.users
+
+		redirect_to projects_path if @task.user != @current_user && !@current_user.is_manager?(@activity.project)
 	end
 
 	def update
-		Task.find(params[:id]).update(task_params)
-		redirect_to tasks_path(project_id: Activity.find(task_params[:activity_id]).project.id, activity_id: task_params[:activity_id])
+		@project = Activity.find(task_params[:activity_id]).project
+		@task = Task.find(params[:id])
+
+		user_id = params[:task][:user_id] || @current_user.id
+
+		if params[:task][:duration].to_i > User.find(user_id).get_available_hours(@project)
+			flash[:error] = "Selected user doesn't have enough available hours"
+			redirect_to edit_task_path(activity_id: task_params[:activity_id], id: params[:id]) and return
+		end
+
+		@task.update(task_params)
+		redirect_to tasks_path(project_id: @project.id, activity_id: task_params[:activity_id])
 	end
 
 	private

@@ -4,8 +4,10 @@ class MembersController < BaseController
 		if(params[:error]) 
 			@error=params[:error]
 		end
-		@avail_usernames = Project.find(params[:project_id]).get_available_users.map{|u| u.username}
+		@project = Project.find(params[:project_id])
+		@avail_usernames = @project.get_available_users.map{|u| u.username}
 		@members = @current_user.projects.find(params[:project_id]).users.includes(:user_projects)
+		@members_limit = @project.member_count - @members.length
 	end
 
 	def create
