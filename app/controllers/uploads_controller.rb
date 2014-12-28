@@ -12,13 +12,13 @@ class UploadsController < BaseController
 	end
 
 	def create
+		@upload = Upload.new
+		@upload.file_data = params[:upload][:file_data]
+		@upload.task = Task.find(params[:task_id])
+		@upload.save_binary
+		@upload.save
 		respond_to do |format|
 			format.html {
-				@upload = Upload.new
-				@upload.file_data = params[:upload][:file_data]
-				@upload.task = Task.find(params[:task_id])
-				@upload.save_binary
-				@upload.save
 				redirect_to :back
 			}
 			format.json {
