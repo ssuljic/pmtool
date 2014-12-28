@@ -6,9 +6,10 @@
 			<%= render 'shared/sidebar' %>
 		</div>
 		<div class="col-md-9">
-
-			<% unless @activity.finished %>
-				<button class="btn btn-default"><span class="glyphicon glyphicon-plus" id="icon"></span><%= link_to ' Add new task', new_task_path(activity_id: params[:activity_id], project_id: params[:project_id]) %></button>
+			<% unless @my_tasks %>
+				<% unless @activity.finished %>
+					<button class="btn btn-default"><span class="glyphicon glyphicon-plus" id="icon"></span><%= link_to ' Add new task', new_task_path(activity_id: params[:activity_id], project_id: params[:project_id]) %></button>
+				<% end %>
 			<% end %>
 			<div id="tasks_accordion">
 				<% @tasks.each do |task| %>

@@ -2,6 +2,7 @@ class TasksController < BaseController
 	before_filter :get_user_projects
 	def index
 		begin
+			
 			if params[:activity_id] && params[:project_id]
 				@activity = @current_user.projects.find(params[:project_id]).activities.find(params[:activity_id])
 				@tasks = @activity.tasks.includes(:uploads)
@@ -9,6 +10,7 @@ class TasksController < BaseController
 				project = @current_user.projects.find(params[:project_id])
 				@tasks = project.tasks.includes(:uploads)
 			else
+				@my_tasks = TRUE
 				@tasks = @current_user.tasks.includes(:uploads)
 			end
 			
