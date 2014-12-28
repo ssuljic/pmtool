@@ -13,7 +13,7 @@
 						<h5> Scheduled period: </h5>
 						<% @meeting.periods.each do |p| %>
 							<% if p.picked %>
-								<h6>From <%= p.from %> to <%= p.to %></h6>
+								<h6><span class="gray">From</span> <%= p.from %> <span class="gray">to</span> <%= p.to %></h6>
 							<%end %>
 						<% end %>
 					<% else %>

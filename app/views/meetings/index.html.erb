@@ -9,12 +9,12 @@
 			<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-time" id="icon"></span> <%= link_to " Add new meeting", new_project_meeting_path %></button>
 			<% @meetings.each do |m| %>
 				<h5><%= m.description %><span class="gray"> at </span><%= m.location %>
+					<button class="btn btn-default"><span class="glyphicon glyphicon-zoom-in" id="icon"></span><%= link_to " Show", project_meeting_path(:id => m.id) %>
+						</button>
 					<% if m.scheduling_finished %>
 					<span class="gray">(<span class="glyphicon glyphicon-check"></span> finished)</span>
 					<% else %>
 						<button class="btn btn-default"><span class="glyphicon glyphicon-share" id="icon"></span><%= link_to " Attend meeting", new_project_meeting_user_period_path(:meeting_id => m.id) %>
-						</button>
-						<button class="btn btn-default"><span class="glyphicon glyphicon-zoom-in" id="icon"></span><%= link_to " Show", project_meeting_path(:id => m.id) %>
 						</button>
 						<% m.periods.each do |p| %>
 							<h6><span class="gray">From</span> <%= p.from %><span class="gray"> to</span> <%= p.to %><span class="gray" id="people_per_period"> <%= p.user_periods.count %> person(s)</span></h6>
