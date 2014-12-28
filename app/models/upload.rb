@@ -1,6 +1,7 @@
 class Upload < ActiveRecord::Base
   belongs_to :binary,  :dependent => :destroy
   belongs_to :task
+  has_many :users, :through => :tasks
   before_create :save_binary
   attr_accessor :file_data
 

@@ -3,7 +3,7 @@ class UploadsController < BaseController
 	before_filter :get_user_projects
 
 	def index
-		@uploads = Task.find(params[:task_id]).uploads
+		@uploads = @current_user.uploads
 		render json: @uploads
 	end
 	

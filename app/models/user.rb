@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
 	has_many :user_projects
 	has_many :projects, :through => :user_projects
 	has_many :tasks
+	has_many :uploads, :through => :tasks
 	#Callbacks because some database adapters use case-sensitive indices
 	before_save { self.email = email.downcase } 
 	before_save { self.username = username.downcase }
