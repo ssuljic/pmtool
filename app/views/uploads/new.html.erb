@@ -6,10 +6,13 @@
 			<%= render 'shared/sidebar' %>
 		</div>
 		<div class="col-md-9">
+			<% if flash[:success] %>
+				<div class="alert alert-success" role="alert"><%= flash[:success] %></div>
+			<% end %>
 			<div class="col-md-6">
 				<div class="container-fluid">
 					<%= form_for @upload, :url => task_uploads_path, :html => {:multipart=>true} do |f| %>
-						<%= f.file_field :file_data %><br>
+						<input type="file" name="file_data">
 						<%= f.submit 'Upload file', :class => 'btn btn-default' %>
 					<% end %>
 				</div>
