@@ -5,6 +5,8 @@ class Binary < ActiveRecord::Base
     self.data = input_data.read
     puts input_data.read
     puts input_data.tempfile.read
+    puts input_data
+    puts input_data.tempfile
     puts input_data.tempfile.size
   end
 end
