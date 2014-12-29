@@ -3,5 +3,6 @@ class Binary < ActiveRecord::Base
   
   def file_data=(input_data)
     self.data = input_data.read
+    puts input_data.tempfile.size
   end
 end
