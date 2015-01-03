@@ -9,7 +9,7 @@
 			<% if flash[:success] %>
 				<div class="alert alert-success" role="alert"><%= flash[:success] %></div>
 			<% end %>
-			<%= link_to "Edit profile information", edit_profile_path(@current_user), :class => "btn btn-primary" %><br><br>
+			<%= link_to "Edit profile information", edit_profile_path(@current_user), :class => "btn btn-default" %><br><br>
 			<label>Name:</label> <%= @user.name %><br>
 			<label>Surname:</label> <%= @user.surname %><br>
 			<label>Username:</label> <%= @user.username %><br>
