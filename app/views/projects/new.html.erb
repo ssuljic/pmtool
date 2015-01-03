@@ -14,11 +14,21 @@
 							<%= f.label :name %>
 							<%= f.text_field :name, class: "form-control" %>
 						</div>
+						<% if @project.errors.any? %>
+					      <% @project.errors[:name].each do |error| %>
+					      	<div class="alert alert-danger" id="error" role="alert"><span class="glyphicon glyphicon-remove-circle">&nbsp;</span><%= error %></div>
+					      <% end %>
+					   <% end %>
 
 						<div class="form-group">
 							<%= f.label :short_description %>
 							<%= f.text_area :short_description, class: "form-control" %>
 						</div>
+						<% if @project.errors.any? %>
+					      <% @project.errors[:short_description].each do |error| %>
+					      	<div class="alert alert-danger" id="error" role="alert"><span class="glyphicon glyphicon-remove-circle">&nbsp;</span><%= error %></div>
+					      <% end %>
+					  <% end %>
 
 						<div class="form-group">
 							<%= f.label :long_description %>
@@ -29,16 +39,31 @@
 							<%= f.label :start_date %>
 							<%= f.text_field :start_date, class: "form-control", id:"datepicker" %>
 						</div>
+						<% if @project.errors.any? %>
+					      <% @project.errors[:start_date].each do |error| %>
+					      	<div class="alert alert-danger" id="error" role="alert"><span class="glyphicon glyphicon-remove-circle">&nbsp;</span><%= error %></div>
+					      <% end %>
+					  <% end %>
 
 						<div class="form-group">
 							<%= f.label :end_date %>
 							<%= f.text_field :end_date, class: "form-control", id:"datepicker_end" %>
 						</div>
+						<% if @project.errors.any? %>
+					      <% @project.errors[:end_date].each do |error| %>
+					      	<div class="alert alert-danger" id="error" role="alert"><span class="glyphicon glyphicon-remove-circle">&nbsp;</span><%= error %></div>
+					      <% end %>
+					  <% end %>
 
 						<div class="form-group">
 							<%= f.label :duration %>
 							<%= f.number_field :duration, class: "form-control", min: "0"%>
 						</div>
+						<% if @project.errors.any? %>
+					      <% @project.errors[:duration].each do |error| %>
+					      	<div class="alert alert-danger" id="error" role="alert"><span class="glyphicon glyphicon-remove-circle">&nbsp;</span><%= error %></div>
+					      <% end %>
+					  <% end %>
 
 						<div class="form-group">
 							<%= f.label :member_count %>

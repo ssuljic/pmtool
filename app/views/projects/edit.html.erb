@@ -8,6 +8,9 @@
 		<div class="col-md-9">
 			<div class="col-md-6">
 				<div class="container-fluid">
+					<% if flash[:error] %>
+						<div class="alert alert-danger" role="alert"><%= flash[:error] %></div>
+					<% end %>
 					<%= form_for @project, :html => {:method => :put, :class => 'form'} do |f| %>
 						<h5><%= link_to "HOME", projects_path %> > EDIT PROJECT</h5>
 						<div class="form-group">

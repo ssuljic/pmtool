@@ -41,27 +41,33 @@ class ProjectsController < BaseController
 	end
 
 	def update
-		Project.find(params[:id]).update(project_params)
-		redirect_to project_path(params[:id])		
+		@project = Project.find(params[:id])
+		if @project.update(project_params)
+			redirect_to project_path(params[:id])		
+		else 
+			flash[:error] = ""
+			@project.errors.messages.each {|k, v| flash[:error] << "#{k.to_s.capitalize} #{v[0]}; " }
+			redirect_to edit_project_path(@project)
+		end
 	end
 
 	def create
 		@project = Project.new(project_params)
  		respond_to do |format|
  			format.html {
- 			if @project.save
- 				@project.manager = @current_user
-		    redirect_to projects_path
-		  else
-		      redirect_to new_project_path
+ 				if @project.save
+ 					@project.manager = @current_user
+		    	redirect_to projects_path
+		  	else
+		      render new_project_path
 		    end
  			}
  			format.json {
  				if @project.save
  					@project.manager = @current_user
-		      render json: { :message => 'Successful', project: @project } 
-		    else
-		      render json: { :message => 'Unsuccessful'}, :status => :unauthorized
+		      		render json: { :message => 'Successful', project: @project } 
+		    	else
+		      		render json: { :message => 'Unsuccessful'}, :status => :unauthorized
 		    end	
  			}
  		end

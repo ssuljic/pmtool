@@ -5,6 +5,11 @@ class Project < ActiveRecord::Base
 	has_many :users, :through => :user_projects
 	has_many :roles, :through => :user_projects
 	has_many :tasks, -> { distinct }, :through => :activities
+	validates :name, presence: true
+	validates :short_description, presence: true
+	validates :start_date, presence: true
+	validates :end_date, presence: true
+	validates :duration, presence: true
 
 	def manager=(user)
 		UserProject.create(project: self, user: user, role: Role.manager, number_of_hours: 0)
