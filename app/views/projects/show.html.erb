@@ -13,7 +13,7 @@
 				  <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-tags" id="icon"> </span> <%= link_to " Edit members", project_members_path(@project) %></button>
 				  <br><br>
 			  <% else %>
-			  	<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-list" id="icon"></span> <%= link_to ' Manage my tasks', tasks_path %></button>
+			  	<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-list" id="icon"></span> <%= link_to ' Manage my tasks', tasks_path(project_id: @project.id, user_id: @current_user.id) %></button>
 			  <% end %>
 			  	<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-time" id="icon"></span> <%= link_to " Manage meetings", project_meetings_path(@project) %></button>
 			  	<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-dashboard" id="icon"></span> <%= link_to " Edit commitment", edit_project_user_project_path(project_id: @project.id, id: UserProject.where(user_id: @current_user, project_id: @project.id).first.id) %></button>

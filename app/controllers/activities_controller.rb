@@ -73,6 +73,7 @@ class ActivitiesController < BaseController
 
 	private
 	def activity_params
+		params[:activity][:finished] = false
 		params.require(:activity).permit(:name, :description, :duration, :finished)
 	end
 end

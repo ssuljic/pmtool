@@ -31,11 +31,11 @@ body {
 .sign_up_form, #new_project_form, #show_project, #tasks_index {
 	margin-bottom: 8%;
 }
-.login_form label, span, .sign_up_form label, span, #new_project_form label, span, #show_members label, #new_task_form label, #activity_index label, #edit_activity label, #new_period_form label,  #edit_task_form label {
+.login_form label, span, .sign_up_form label, span, #new_project_form label, span, #show_members label, #new_task_form label, #activity_index label, #edit_activity label, #new_period_form label,  #edit_task_form label, #new_activity_form label{
 	color:#22CB83;
 }
 
-.login_form input, .sign_up_form input, #new_project_form .form-control, #new_task_form .form-control, #new_task_form select, #edit_activity .form-control, #new_period_form .form-control, #edit_task_form .form-control {
+.login_form input, .sign_up_form input, #new_project_form .form-control, #new_task_form .form-control, #new_task_form select, #edit_activity .form-control, #new_period_form .form-control, #edit_task_form .form-control, #new_activity_form .form-control {
 	border-radius: 0px;
 	border-style: solid;
 	border-width: 3px;
@@ -47,7 +47,7 @@ body {
 	border-color: #22CB83;
 }
 
-.login_form button, .sign_up_form button, #new_project_form .btn, #show_project button, #show_members .btn, #tasks_index .btn, #new_task_form .btn, #activity_index .btn, #edit_activity .btn, #meetings_index .btn, #new_period_form .btn, #edit_task_form .btn  {
+.login_form button, .sign_up_form button, #new_project_form .btn, #show_project button, #show_members .btn, #tasks_index .btn, #new_task_form .btn, #activity_index .btn, #edit_activity .btn, #meetings_index .btn, #new_period_form .btn, #edit_task_form .btn, #new_activity_form .btn {
 	border-radius: 0px;
 	border-style: solid;
 	border-width: 3px;
@@ -58,7 +58,7 @@ body {
 	margin-bottom: 1%;
 }
 
-.login_form button:hover, .sign_up_form button:hover, #new_project_form .btn:hover, #show_project button:hover, #show_members .btn:hover, #tasks_index .btn:hover, #new_task_form .btn:hover, #activity_index .btn:hover, #edit_activity .btn:hover, #meetings_index .btn:hover, #new_period_form .btn:hover,  #edit_task_form .btn:hover {
+.login_form button:hover, .sign_up_form button:hover, #new_project_form .btn:hover, #show_project button:hover, #show_members .btn:hover, #tasks_index .btn:hover, #new_task_form .btn:hover, #activity_index .btn:hover, #edit_activity .btn:hover, #meetings_index .btn:hover, #new_period_form .btn:hover,  #edit_task_form .btn:hover, #new_activity_form .btn:hover {
 	border-radius: 0px;
 	border-style: solid;
 	border-width: 3px;

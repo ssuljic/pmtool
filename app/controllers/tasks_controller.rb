@@ -6,11 +6,13 @@ class TasksController < BaseController
 			if params[:activity_id] && params[:project_id]
 				@activity = @current_user.projects.find(params[:project_id]).activities.find(params[:activity_id])
 				@tasks = @activity.tasks.includes(:uploads)
+			elsif params[:user_id] && params[:project_id]
+				@my_tasks = TRUE
+				@tasks = Project.find(params[:project_id]).tasks.includes(:uploads).where('user_id = ?', params[:user_id])
 			elsif params[:project_id]
 				project = @current_user.projects.find(params[:project_id])
 				@tasks = project.tasks.includes(:uploads)
 			else
-				@my_tasks = TRUE
 				@tasks = @current_user.tasks.includes(:uploads)
 			end
 			
