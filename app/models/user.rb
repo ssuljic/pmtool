@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
 	validates :username, presence: true, length: {minimum: 5, maximum: 15},
 	                    uniqueness: { case_sensitive: false }
 	has_secure_password
-	validates :password, length: { minimum: 6 }
+	# validates :password, length: { minimum: 6 }
 
 	def projects_by_role(role)
 		self.projects.includes(:user_projects).where('role_id = ? AND finished=FALSE', role.id)
