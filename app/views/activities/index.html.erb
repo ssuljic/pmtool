@@ -6,6 +6,9 @@
 			<%= render 'shared/sidebar' %>
 		</div>
 		<div class="col-md-9" id="activity_index">
+			<% if flash[:error] %>
+				<div class="alert alert-danger" role="alert"><%= flash[:error] %></div>
+			<% end %>
 			<button class="btn btn-default"><span class="glyphicon glyphicon-plus" id="icon"></span><%= link_to 'Create New Activity', new_project_activity_path%></button><br>
 			<div class="horizontal-form">
 				<% @project.activities.each do |activity| %>
