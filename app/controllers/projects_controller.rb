@@ -72,6 +72,10 @@ class ProjectsController < BaseController
  			}
  		end
 	end
+
+	def status
+	end
+
 	private
 
 	def project_params

@@ -18,11 +18,11 @@ body {
 	margin-top: 8%;
 }
 
- #new_project_form h5, #show_project h2, h3, #accordion h3  {
+ #new_project_form h5, #show_project h2, h3, #accordion h3, #accordion-assigned h3 {
  	color: #22CB83;
  }
 
- #show_project p, #accordion p, #accordion ul li {
+ #show_project p, #accordion p, #accordion ul li, #accordion-assigned p {
  	color: #0494D2;
  	font-style: italic;
  	font-size: 13px;

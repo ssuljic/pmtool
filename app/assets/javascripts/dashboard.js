@@ -4,6 +4,11 @@ $(function() {
 	  	active: false
 	  });
 
+	  $( "#accordion-assigned" ).accordion({
+	  	collapsible: true,
+	  	active: false
+	  });
+
 	  $( "#tasks_accordion" ).accordion({
 	  	collapsible: true,
 	  	active: false

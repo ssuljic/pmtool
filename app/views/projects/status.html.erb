@@ -1,0 +1,31 @@
+s<%= render 'shared/header' %>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-3">
+			<%= render 'shared/sidebar' %>
+		</div>
+		<div class="col-md-9" id="projects_status">
+			<h3>My projects</h3>
+			<div id="accordion">
+				<% @myprojects.each do |project| %>
+				  <h3><%= project.name %></h3>
+				  <div>
+				  	<p><%= project.activities.count %> activities (<%= project.finished_activities_count %> finished)</p>
+				  	<p><%= project.tasks.count %> tasks (<%= project.finished_tasks_count %> finished)</p>
+				  </div>
+			  <% end %>
+			</div>
+			<h3>Assigned projects</h3>
+			<div id="accordion-assigned">
+				<% @assignedprojects.each do |project| %>
+				  <h3><%= project.name %></h3>
+				  <div>
+				  	<p><%= project.activities.count %> activities (<%= project.finished_activities_count %> finished)</p>
+				  	<p><%= project.tasks.count %> tasks (<%= project.finished_tasks_count %> finished)</p>
+				  </div>
+			  <% end %>
+			</div>
+		</div>
+	</div>
+</div>

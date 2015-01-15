@@ -11,6 +11,7 @@ Pmtool::Application.routes.draw do
   resources :projects do
     collection do
       get 'all'
+      get 'status'
     end
     resources :members, :only => [:index, :create, :destroy]
     resources :activities

@@ -13,6 +13,9 @@
 	<li class="list-group-item">
 		<span class="glyphicon glyphicon-flag" id="icon">&nbsp;</span><%= link_to 'Notifications'%><span class="badge">4</span>
 	</li>
+	<li class="list-group-item">
+		<span class="glyphicon glyphicon-signal" id="icon">&nbsp;</span><%= link_to 'View projects status', status_projects_path %>
+	</li>
 </ul>
 <ul class="list-group" id="sidebar"> &nbsp;&nbsp;My projects
 	<% if @myprojects.empty? %>

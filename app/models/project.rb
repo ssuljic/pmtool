@@ -30,4 +30,12 @@ class Project < ActiveRecord::Base
 		end
 		User.where('id not in (?)', a)
 	end
+
+	def finished_activities_count
+		self.activities.to_a.map { |a| a.finished ? 1 : 0 }.reduce(0, :+)
+	end
+
+	def finished_tasks_count
+		self.tasks.to_a.map { |a| a.status == 100 ? 1 : 0 }.reduce(0, :+)
+	end
 end
